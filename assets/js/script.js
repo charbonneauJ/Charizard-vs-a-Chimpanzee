@@ -18,10 +18,12 @@ function createAnimalCard(animals) {
     .attr("data-animal-id", animals.id);
   const cardHeader = $("<div>").addClass("card-header h3").text(animals.name);
   const cardBody = $("<div>").addClass("card-body");
-  const cardStats = $("<div>")
-    .addClass("card-stats")
-    .text(animals.height, animals.weight, animals.speed);
+  const animalHeight = $("<div>").addClass("card-stats").text(animals.height);
+  const animalWeight = $("<div>").addClass("card-stats").text(animals.weight);
+  const animalSpeed = $("<div>").addClass("card-stats").text(animals.speed);
+  cardBody.append(animalHeight, animalWeight, animalSpeed);
+  animalCard.append(cardHeader, cardBody);
 }
-
+createAnimalCard(animals);
 const animalList = $("#animals");
 animalList.append(createAnimalCard(animals));

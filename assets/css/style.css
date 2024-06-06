@@ -1,0 +1,86 @@
+body {
+  min-height: 100vh;
+  min-width: 100vw;
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  padding: 1%;
+}
+
+header {
+}
+
+h1 {
+}
+
+nav {
+}
+
+nav ul {
+}
+
+nav ul li {
+}
+
+main {
+}
+
+main div {
+}
+
+main div section {
+}
+
+main div section header {
+}
+
+main div section p {
+}
+
+main div section img {
+}
+
+footer {
+}
+
+.body {
+}
+
+.header-start {
+}
+
+.h1 {
+}
+
+.nav {
+}
+
+.nav-ul {
+}
+
+.nav-ul-li {
+}
+
+.links {
+}
+
+.main {
+}
+
+.main-div {
+}
+
+.main-div-section {
+}
+
+.main-div-section-header {
+}
+
+.main-div-section-p {
+}
+
+.main-div-section-img {
+}
+
+.footer {
+}

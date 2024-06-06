@@ -23,7 +23,9 @@ function createAnimalCard(animals) {
   const animalSpeed = $("<div>").addClass("card-stats").text(animals.speed);
   cardBody.append(animalHeight, animalWeight, animalSpeed);
   animalCard.append(cardHeader, cardBody);
+  console.log(animalCard);
 }
-createAnimalCard(animals);
+console.log(animals);
 const animalList = $("#animals");
 animalList.append(createAnimalCard(animals));
+console.log(animals);

@@ -26,7 +26,7 @@ function createAnimalCard(animals) {
   console.log(animalCard);
 }
 console.log(animals);
-const animalList = $("#animals");
+const animalList = $("#fave-list");
 animalList.append(createAnimalCard(animals));
 console.log(animals);
 

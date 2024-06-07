@@ -13,9 +13,7 @@ let animal = {
 const animals = [animal];
 
 function createAnimalCard(animals) {
-  const animalCard = $("<div>")
-    .addClass("card animal-card")
-    .attr("data-animal-id", animals.id);
+  const animalCard = $("<div>").addClass("card animal-card");
   const cardHeader = $("<div>").addClass("card-header h3").text(animals.name);
   const cardBody = $("<div>").addClass("card-body");
   const animalHeight = $("<div>").addClass("card-stats").text(animals.height);
@@ -23,12 +21,15 @@ function createAnimalCard(animals) {
   const animalSpeed = $("<div>").addClass("card-stats").text(animals.speed);
   cardBody.append(animalHeight, animalWeight, animalSpeed);
   animalCard.append(cardHeader, cardBody);
+  const animalList = $("#fave-list");
+  animalList.append(animalCard);
   console.log(animalCard);
+  return animalCard;
 }
 console.log(animals);
-const animalList = $("#fave-list");
-animalList.append(createAnimalCard(animals));
+createAnimalCard(animals);
 console.log(animals);
+console.log(animalCard);
 
 //todo add event listeners
 document.addEventListener("DOMContentLoaded", () => {

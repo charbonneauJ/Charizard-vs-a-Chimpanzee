@@ -1,3 +1,22 @@
+let animalInput = 'cheetah';  // needs to be reused 
+function animalFetchApi(animalInput){
+$.ajax({
+    method: 'GET',
+    url: 'https://api.api-ninjas.com/v1/animals?name=' + animalInput,
+    headers: { 'X-Api-Key': 'LOHrIg46z+hgQ1p2e+L3QQ==Nr61dc7r4QFJEkxi' },
+    contentType: 'application/json',
+    success: function (result) {
+        console.log('ninja api', result[0]);
+        
+    },
+    error: function ajaxError(jqXHR) {
+        console.error('Error: ', jqXHR.responseText);
+    }
+});
+}
+//add to event listener
+animalFetchApi(animalInput)
+
 //todo store to local storage
 
 //todo get from local storage

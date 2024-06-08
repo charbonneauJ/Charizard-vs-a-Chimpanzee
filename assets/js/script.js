@@ -1,37 +1,26 @@
-//todo get user input of which animal and pokemon
-
-//todo get stats and pics from local storage
-
-//todo display animal and pokemon cards
-
-let animal = {
-  name: "panther",
-  height: "28 inches",
-  weight: "140 lbs",
-  speed: "50 mph",
-};
-const animals = [animal];
-
-function createAnimalCard(animals) {
-  const animalCard = $("<div>").addClass("card animal-card");
-  const cardHeader = $("<div>").addClass("card-header h3").text(animals.name);
-  const cardBody = $("<div>").addClass("card-body");
-  const animalHeight = $("<div>").addClass("card-stats").text(animals.height);
-  const animalWeight = $("<div>").addClass("card-stats").text(animals.weight);
-  const animalSpeed = $("<div>").addClass("card-stats").text(animals.speed);
-  cardBody.append(animalHeight, animalWeight, animalSpeed);
-  animalCard.append(cardHeader, cardBody);
-  const animalList = $("#fave-list");
-  animalList.append(animalCard);
-  console.log(animalCard);
-  return animalCard;
+let animalInput = "cheetah"; // needs to be reused
+function animalFetchApi(animalInput) {
+  $.ajax({
+    method: "GET",
+    url: "https://api.api-ninjas.com/v1/animals?name=" + animalInput,
+    headers: { "X-Api-Key": "LOHrIg46z+hgQ1p2e+L3QQ==Nr61dc7r4QFJEkxi" },
+    contentType: "application/json",
+    success: function (result) {
+      console.log("ninja api", result[0]);
+    },
+    error: function ajaxError(jqXHR) {
+      console.error("Error: ", jqXHR.responseText);
+    },
+  });
 }
-console.log(animals);
-createAnimalCard(animals);
-console.log(animals);
-console.log(animalCard);
+//add to event listener
+animalFetchApi(animalInput);
 
-//todo add event listeners
+//todo store to local storage
+
+//todo get from local storage
+
+//todo display animal cards
 document.addEventListener("DOMContentLoaded", () => {
   // Functions to open and close a modal
   function openModal($el) {

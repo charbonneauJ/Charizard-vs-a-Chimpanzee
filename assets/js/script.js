@@ -31,7 +31,6 @@ createAnimalCard(animals);
 console.log(animals);
 console.log(animalCard);
 
-
 let animalInput = 'cheetah';  // needs to be removed
 function animalFetchApi(animalInput) {
   $.ajax({
@@ -73,8 +72,7 @@ document.addEventListener("DOMContentLoaded", () => {
   function closeModal($el) {
     $el.classList.remove("is-active");
   }
-
-//todo display animal cards
+}
 document.addEventListener('DOMContentLoaded', () => {
   // Functions to open and close a modal
   function openModal($el) {

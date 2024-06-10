@@ -17,7 +17,11 @@ function animalFetchApi(animalInput) {
       console.log('speed', speed)
       if (result[0].characteristics.height === null || result[0].characteristics.height === undefined)
       console.log('height only', result[0].characteristics.height)
-
+    
+    // below is a way to look if a variable has been defined or not
+      //   if (typeof variable === 'undefined') {
+    //     // variable is undefined
+    // }
     },
     error: function ajaxError(jqXHR) {
       console.error('Error: ', jqXHR.responseText);

@@ -11,7 +11,6 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.0/css/bulma.min.css">
     <link rel="stylesheet" href="./assets/css/reset.css">
     <link rel="stylesheet" href="./assets/css/style.css">
-    <script src="assets/js/script.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="crossorigin="anonymous"></script>
 
   <title>Charizard vs a Chimpanzee</title>
@@ -26,34 +25,50 @@
 </header>
   <h1>Pick an Animal and a Pokemon</h1>
   <div>
-    <input id="search-input-animal" type="text">
-    <button id="search-button-animal">Search Animal</button>
+    <input class="input is-normal" id="search-input-animal" type="text">
+    <button class="button is-black" id="search-button-animal">Search Animal</button>
   </div>
   <div>
-    <input id="search-input-pokemon" type="text">
-    <button id="search-button-pokemon">Search Pokemon</button>
+    <input class="input is-normal" id="search-input-pokemon" type="text">
+    <button class="button is-black" id="search-button-pokemon">Search Pokemon</button>
   </div>
 
-  <div>
-    <h2>Animal</h2>
-    <div id="animal-1-output"></div>
-    <p id="Astat-1">stat 1</p>
-    <p id="Astat-2">stat 2</p>
-    <p id="Astat-3">stat 3</p>
+  <div class="card" id="animal-1-output">
+    <header class="animal-1-output-header">
+      <p class="card-header-title">Animal</p>
+    </header>
+    <div class="card-content">
+      <div class="a-stats-content">
+        <p id="aStat-1"></p>
+        <p id="aStat-2"></p>
+        <p id="aStat-3"></p>
+      </div>
+    </div>
+    <footer class="card-footer">
+      <a href="#" class="card-footer-item">Save to Favorites</a>
+      <a href="#" class="card-footer-item">Delete</a>
+    </footer>
   </div>
-  <div>
-    <h2>Pokemon</h2>
-    <div id="pokemon-1-output"></div>
-    <p id="Pstat-1">stat 1</p>
-    <p id="Pstat-2">stat 2</p>
-    <p id="Pstat-3">stat 3</p>
+  <div class="card" id="pokemon-1-output">
+    <header class="pokemon-1-output-header">
+      <p class="card-header-title">Pokemon</p>
+    </header>
+    <div class="card-content">
+      <div class="p-stats-content">
+        <p id="pStat-1"></p>
+        <p id="PStat-2"></p>
+        <p id="pStat-3"></p>
+      </div>
+    </div>
+    <footer class="card-footer">
+      <a href="#" class="card-footer-item">Save to Favorites</a>
+      <a href="#" class="card-footer-item">Delete</a>
+    </footer>
   </div>
 
 <footer>
-    <p>&copy;Charizard vs a Chimpanzee</p>
+    <p>Charizard vs a Chimpanzee&copy;</p>
 </footer>
     <script src="assets/js/script.js"></script>
   </body>
-</html
-
-
+</html>

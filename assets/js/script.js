@@ -1,6 +1,6 @@
 
 
-let animalInput = 'cheetah';  // needs to be removed
+let animalInput = 'cheetah';  // needs to be removed.  The function will be called through the form section.  animalFetchApi(userAnimalInput); 
 function animalFetchApi(animalInput) {
   $.ajax({
     method: 'GET',

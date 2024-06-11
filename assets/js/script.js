@@ -1,6 +1,4 @@
 
-
-let animalInput = 'cheetah';  // needs to be removed.  The function will be called through the form section.  animalFetchApi(userAnimalInput); 
 function animalFetchApi(animalInput) {
   $.ajax({
     method: 'GET',
@@ -11,29 +9,58 @@ function animalFetchApi(animalInput) {
       console.log('ninja api', result[0]);
 
       // console.log('weight only', result[0].characteristics.weight)
-      let weight = result[0].characteristics.weight;
-      console.log(weight);
-      let speed = result[0].characteristics.top_speed
-      console.log('speed', speed)
-      if (result[0].characteristics.height === null || result[0].characteristics.height === undefined)
-      console.log('height only', result[0].characteristics.height)
-    
-    // below is a way to look if a variable has been defined or not
+      // checking results for weight if they exist. if they don't dom updated with unknown
+      // if it exists update dom with weight
+      // need to format weight info to look cleaner
+      if (result[0].characteristics.weight === null
+        || result[0].characteristics.weight === undefined) {
+        document.getElementById('aStat-1').textContent = 'Weight: unknown ';
+      }
+      else {
+        let weight = result[0].characteristics.weight;
+        document.getElementById('aStat-1').textContent = `Weight: ${weight}`;
+        console.log('Weight: ', weight)
+      }
+      // checking for speed, updating dom with info
+      if (result[0].characteristics.top_speed === null
+        || result[0].characteristics.top_speed === undefined) {
+        document.getElementById('aStat-2').textContent = 'Speed: unknown ';
+      }
+      else {
+        let speed = result[0].characteristics.top_speed
+        document.getElementById('aStat-2').textContent = `Speed: ${speed} `;
+      }
+      if (result[0].characteristics.height !== null
+        && result[0].characteristics.height !== undefined) {
+        let height = result[0].characteristics.height;
+        document.getElementById('aStat-3').textContent = `Height: ${height}`
+      }
+      else if (result[0].characteristics.length !== null
+        && result[0].characteristics.length !== undefined) {
+          let length = result[0].characteristics.length;
+          document.getElementById('aStat-3').textContent = `Lenght: ${length}`;
+      }
+      else {
+        document.getElementById('aStat-3').textContent = 'Height: unknown';
+      }
+
+      // below is a way to look if a variable has been defined or not
       //   if (typeof variable === 'undefined') {
-    //     // variable is undefined
-    // }
+      //     // variable is undefined
+      // }
     },
     error: function ajaxError(jqXHR) {
       console.error('Error: ', jqXHR.responseText);
     }
   });
-// createAnimalCard(animals)
-// note to bryan. information coming out of the api will be an array
-// animals = [name, height, weight, speed]
+  //createAnimalCard(animals)
+  // note to bryan. information coming out of the api will be an array
+  // animals = [name, height, weight, speed]
 }
-
+let animalInput = 'cheetah';  // needs to be removed.  The function will be called through the form section.  animalFetchApi(userAnimalInput); 
 //add to event listener
-animalFetchApi(animalInput)
+
+// animalFetchApi(animalInput);
 
 //todo store to local storage
 

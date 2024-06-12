@@ -31,8 +31,8 @@ createAnimalCard();
 console.log(animals);
 console.log(animalCard);
 
-let animalInput = "cheetah"; // needs to be removed
-function animalFetchApi(animalInput) {
+let animalInputs = "cheetah"; // needs to be removed
+function animalFetchApi(animalInputs) {
   $.ajax({
     method: "GET",
     url: "https://api.api-ninjas.com/v1/animals?name=" + animalInput,
@@ -41,28 +41,70 @@ function animalFetchApi(animalInput) {
     success: function (result) {
       console.log("ninja api", result[0]);
 
-      // console.log('weight only', result[0].characteristics.weight)
-      let weight = result[0].characteristics.weight;
-      console.log(weight);
-      let speed = result[0].characteristics.top_speed;
-      console.log("speed", speed);
-      if (
-        result[0].characteristics.height === null ||
-        result[0].characteristics.height === undefined
-      )
-        console.log("height only", result[0].characteristics.height);
+      // checking results for weight if they exist. if they don't dom updated with unknown
+      // if it exists update dom with weight
+      // need to format weight info to look cleaner
+      // document.getElementById('api-animal-name').textContent = result[0].;
+      let apiWeight = result[0].characteristics.weight;
+      if (apiWeight === null || apiWeight === undefined) {
+        document.getElementById("aStat-1").textContent = "Weight: unknown ";
+      } else {
+        let weight = apiWeight;
+        document.getElementById("aStat-1").textContent = `Weight: ${weight}`;
+        console.log("Weight: ", weight);
+      }
+      // checking for speed, updating dom with info
+      let apiSpeed = result[0].characteristics.top_speed;
+      if (apiSpeed === null || apiSpeed === undefined) {
+        document.getElementById("aStat-2").textContent = "Speed: unknown ";
+      } else {
+        let speed = apiSpeed;
+        document.getElementById("aStat-2").textContent = `Speed: ${speed} `;
+      }
+      // chcking for height
+      let apiHeight = result[0].characteristics.height;
+      if (apiHeight !== null && apiHeight !== undefined) {
+        document.getElementById("aStat-3").textContent = `Height: ${apiHeight}`;
+      } else if (
+        result[0].characteristics.length !== null &&
+        result[0].characteristics.length !== undefined
+      ) {
+        let length = result[0].characteristics.length;
+        document.getElementById("aStat-3").textContent = `Lenght: ${length}`;
+      } else {
+        document.getElementById("aStat-3").textContent = "Height: unknown";
+      }
+
+      // below is a way to look if a variable has been defined or not
+      //   if (typeof variable === 'undefined') {
+      //     // variable is undefined
+      // }
     },
     error: function ajaxError(jqXHR) {
       console.error("Error: ", jqXHR.responseText);
     },
   });
-  // createAnimalCard(animals)
+  //createAnimalCard(animals)
   // note to bryan. information coming out of the api will be an array
   // animals = [name, height, weight, speed]
 }
 
-//add to event listener
-animalFetchApi(animalInput);
+//event listener for click of animal search. will need to make animalInput a string from the user.
+const animalInput = document.querySelector("#search-input-animal");
+const animalButton = document.querySelector("#search-button-animal");
+
+function animalSearch() {
+  const userAnimalInput = animalInput.value.trim();
+  if (userAnimalInput) {
+    animalFetchApi(userAnimalInput);
+  }
+  // this can be an alert somewhere else.
+  else {
+    console.log("enter an animal");
+  }
+}
+
+animalButton.addEventListener("click", animalSearch);
 
 //todo add event listeners
 // document.addEventListener("DOMContentLoaded", () => {

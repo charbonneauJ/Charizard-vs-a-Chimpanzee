@@ -8,7 +8,7 @@ function animalFetchApi(animalInput) {
     success: function (result) {
       console.log('ninja api', result[0]);
 
-  
+
       // checking results for weight if they exist. if they don't dom updated with unknown
       // if it exists update dom with weight
       // need to format weight info to look cleaner
@@ -38,20 +38,17 @@ function animalFetchApi(animalInput) {
       if (apiHeight !== null
         && apiHeight !== undefined) {
         document.getElementById('aStat-3').textContent = `Height: ${apiHeight}`
+
       }
       else if (result[0].characteristics.length !== null
         && result[0].characteristics.length !== undefined) {
-          let length = result[0].characteristics.length;
-          document.getElementById('aStat-3').textContent = `Lenght: ${length}`;
+        let length = result[0].characteristics.length;
+        document.getElementById('aStat-3').textContent = `Length: ${length}`;
       }
       else {
         document.getElementById('aStat-3').textContent = 'Height: unknown';
       }
 
-      // below is a way to look if a variable has been defined or not
-      //   if (typeof variable === 'undefined') {
-      //     // variable is undefined
-      // }
     },
     error: function ajaxError(jqXHR) {
       console.error('Error: ', jqXHR.responseText);
@@ -68,18 +65,18 @@ function animalFetchApi(animalInput) {
 const animalInput = document.querySelector('#search-input-animal');
 const animalButton = document.querySelector('#search-button-animal');
 
-function animalSearch(){
+function animalSearch() {
   const userAnimalInput = animalInput.value.trim();
-  if (userAnimalInput){
+  if (userAnimalInput) {
     animalFetchApi(userAnimalInput);
   }
   // this can be an alert somewhere else.
-  else{
+  else {
     console.log('enter an animal')
   };
 };
 
-animalButton.addEventListener('click', animalSearch);
+
 
 //todo store to local storage
 
@@ -131,3 +128,44 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
+function pokemonFetchApi(userPokemonInput) {
+  console.log('step 1:', userPokemonInput);
+  let urlPokemon = `https://pokeapi.co/api/v2/pokemon/${userPokemonInput}`;
+  console.log(urlPokemon);
+  fetch(urlPokemon)
+    .then(function (response) {
+      // Check if the response is successful (status code 200-299)
+      if (!response.ok) {
+        throw new Error(`Error: ${response.statusText}`);
+      }
+      // Parse the response as JSON
+      return response.json();
+    })
+    .then(function (data) {
+      // Log the data from the response
+      console.log('step 2:', data);
+      // update the dom
+
+    })
+    .catch(function (error) {
+      // add this to the dom somewhere
+      console.error('Error, try again', error);
+    });
+}
+
+const pokemonInput = document.querySelector('#search-input-pokemon');
+const pokemonButton = document.querySelector('#search-button-pokemon');
+
+function pokemonSearch() {
+  const userPokemonInput = pokemonInput.value.trim();
+  if (userPokemonInput) {
+    pokemonFetchApi(userPokemonInput);
+  }
+  // this can be an alert somewhere else.
+  else {
+    console.log('enter a pokemon')
+  };
+};
+
+pokemonButton.addEventListener('click', pokemonSearch);
+animalButton.addEventListener('click', animalSearch);

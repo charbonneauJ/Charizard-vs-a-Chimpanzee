@@ -8,32 +8,36 @@ function animalFetchApi(animalInput) {
     success: function (result) {
       console.log('ninja api', result[0]);
 
-      // console.log('weight only', result[0].characteristics.weight)
+  
       // checking results for weight if they exist. if they don't dom updated with unknown
       // if it exists update dom with weight
       // need to format weight info to look cleaner
-      if (result[0].characteristics.weight === null
-        || result[0].characteristics.weight === undefined) {
+      // document.getElementById('api-animal-name').textContent = result[0].;
+      let apiWeight = result[0].characteristics.weight
+      if (apiWeight === null
+        || apiWeight === undefined) {
         document.getElementById('aStat-1').textContent = 'Weight: unknown ';
       }
       else {
-        let weight = result[0].characteristics.weight;
+        let weight = apiWeight;
         document.getElementById('aStat-1').textContent = `Weight: ${weight}`;
         console.log('Weight: ', weight)
       }
       // checking for speed, updating dom with info
-      if (result[0].characteristics.top_speed === null
-        || result[0].characteristics.top_speed === undefined) {
+      let apiSpeed = result[0].characteristics.top_speed;
+      if (apiSpeed === null
+        || apiSpeed === undefined) {
         document.getElementById('aStat-2').textContent = 'Speed: unknown ';
       }
       else {
-        let speed = result[0].characteristics.top_speed
+        let speed = apiSpeed
         document.getElementById('aStat-2').textContent = `Speed: ${speed} `;
       }
-      if (result[0].characteristics.height !== null
-        && result[0].characteristics.height !== undefined) {
-        let height = result[0].characteristics.height;
-        document.getElementById('aStat-3').textContent = `Height: ${height}`
+      // chcking for height
+      let apiHeight = result[0].characteristics.height;
+      if (apiHeight !== null
+        && apiHeight !== undefined) {
+        document.getElementById('aStat-3').textContent = `Height: ${apiHeight}`
       }
       else if (result[0].characteristics.length !== null
         && result[0].characteristics.length !== undefined) {
@@ -56,11 +60,26 @@ function animalFetchApi(animalInput) {
   //createAnimalCard(animals)
   // note to bryan. information coming out of the api will be an array
   // animals = [name, height, weight, speed]
-}
-let animalInput = 'cheetah';  // needs to be removed.  The function will be called through the form section.  animalFetchApi(userAnimalInput); 
-//add to event listener
 
-// animalFetchApi(animalInput);
+}
+
+
+//event listener for click of animal search. will need to make animalInput a string from the user. 
+const animalInput = document.querySelector('#search-input-animal');
+const animalButton = document.querySelector('#search-button-animal');
+
+function animalSearch(){
+  const userAnimalInput = animalInput.value.trim();
+  if (userAnimalInput){
+    animalFetchApi(userAnimalInput);
+  }
+  // this can be an alert somewhere else.
+  else{
+    console.log('enter an animal')
+  };
+};
+
+animalButton.addEventListener('click', animalSearch);
 
 //todo store to local storage
 

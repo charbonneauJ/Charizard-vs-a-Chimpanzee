@@ -67,7 +67,7 @@ const animalButton = document.querySelector('#modal-button-animal');
 
 function animalSearch(){
   const userAnimalInput = animalInput.value.trim();
-
+  console.log('User Animal Input', userAnimalInput);
   // const userAnimalInput = "Dog";
   // This above runs the modal when the button is clicked. 
 
@@ -93,6 +93,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Functions to open and close a modal
   function openModal($el) {
     $("#modal-js-example").addClass('is-active');
+    $("#modal-js-example1").addClass('is-active');
   }
 
   function closeModal($el) {
@@ -160,13 +161,16 @@ function pokemonFetchApi(userPokemonInput) {
     });
 }
 
-const pokemonInput = document.querySelector('#modal-input-pokemon');
-const pokemonButton = document.querySelector('#modal-button-pokemon');
+const pokemonInput = document.querySelector('#userPokemonInput');
+const pokemonButton = document.querySelector('#modal-button-pokemon'); 
 
 function pokemonSearch() {
   const userPokemonInput = pokemonInput.value.trim();
+  console.log('User Pokemon Input', userPokemonInput);
+  pokemonFetchApi(userPokemonInput);
   if (userPokemonInput) {
-    pokemonFetchApi(userPokemonInput);
+    console.log("made it here")
+    
   }
   // this can be an alert somewhere else.
   else {
@@ -175,4 +179,4 @@ function pokemonSearch() {
 };
 
 pokemonButton.addEventListener('click', pokemonSearch);
-animalButton.addEventListener('click', animalSearch);
+// animalButton.addEventListener('click', animalSearch);

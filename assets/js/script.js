@@ -27,7 +27,7 @@ function animalFetchApi(animalInput) {
         let speed = apiSpeed;
         document.getElementById("aStat-2").textContent = `Speed: ${speed} `;
       }
-      // chcking for height
+      // checking for height
       let apiHeight = result[0].characteristics.height;
       if (apiHeight !== null && apiHeight !== undefined) {
         document.getElementById("aStat-3").textContent = `Height: ${apiHeight}`;
@@ -36,7 +36,7 @@ function animalFetchApi(animalInput) {
         result[0].characteristics.length !== undefined
       ) {
         let length = result[0].characteristics.length;
-        document.getElementById("aStat-3").textContent = `Lenght: ${length}`;
+        document.getElementById("aStat-3").textContent = `Length: ${length}`;
       } else {
         document.getElementById("aStat-3").textContent = "Height: unknown";
       }
@@ -77,6 +77,32 @@ animalButton.addEventListener("click", animalSearch);
 //todo get from local storage
 
 //todo display animal cards
+let animal = {
+  name: "Cheetah",
+  weight: "100lbs",
+  height: "45in",
+  speed: "70mph",
+};
+const animals = [animal];
+
+function createAnimalCard(animals) {
+  const cardH3 = $("<h3>").addClass("card-header-h3").text(animals.name);
+  const cardHeader = $(`#card-header`);
+  cardHeader.append(cardH3);
+  const animalHeight = $("<p>").addClass("card-stats").text(animals.height);
+  const animalWeight = $("<p>").addClass("card-stats").text(animals.weight);
+  const animalSpeed = $("<p>").addClass("card-stats").text(animals.speed);
+  const cardBody = $(`#card-body`);
+  cardBody.append(animalHeight, animalWeight, animalSpeed);
+  return;
+}
+console.log(animals);
+createAnimalCard(animals);
+console.log(animals);
+
+//todo display pokemon cards
+
+//event listeners
 document.addEventListener("DOMContentLoaded", () => {
   // Functions to open and close a modal
   function openModal($el) {

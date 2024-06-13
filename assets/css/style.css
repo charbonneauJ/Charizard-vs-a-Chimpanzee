@@ -49,14 +49,15 @@ body {
   margin: 10%;
   width: fit-content;
   background-color: cornflowerblue;
-  color: wheat;
+  color: antiquewhite;
 }
 
 .p-stats-content {
   padding: 10%;
   margin: 10%;
   width: fit-content;
-  background-color: navy;
+  background-color: dodgerblue;
+  color: wheat;
 }
 
 header {

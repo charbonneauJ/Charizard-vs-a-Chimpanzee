@@ -1,3 +1,33 @@
+// dealing with user input pokemon
+function pokemonSearch() {
+  const userPokemonInput = pokemonInput.value.trim();
+  console.log("User Pokemon Input", userPokemonInput);
+  pokemonFetchApi(userPokemonInput);
+  if (userPokemonInput) {
+    console.log("made it here");
+  }
+  // this can be an alert somewhere else.
+  else {
+    console.log("enter a pokemon");
+  }
+}
+
+// dealing with user input animal
+function animalSearch() {
+  const userAnimalInput = animalInput.value.trim();
+  console.log("User Animal Input:", userAnimalInput);
+  // const userAnimalInput = "Dog";
+  // This above runs the modal when the button is clicked.
+  if (userAnimalInput) {
+    animalFetchApi(userAnimalInput);
+  }
+  // this can be an alert somewhere else.
+  else {
+    console.log("enter an animal");
+  }
+}
+
+// fetching information using user input animal
 function animalFetchApi(animalInput) {
   $.ajax({
     method: "GET",
@@ -5,12 +35,10 @@ function animalFetchApi(animalInput) {
     headers: { "X-Api-Key": "LOHrIg46z+hgQ1p2e+L3QQ==Nr61dc7r4QFJEkxi" },
     contentType: "application/json",
     success: function (result) {
-      console.log("ninja api", result[0]);
+      console.log(`ninja api`, result[0]);
 
       // checking results for weight if they exist. if they don't dom updated with unknown
       // if it exists update dom with weight
-      // need to format weight info to look cleaner
-      // document.getElementById('api-animal-name').textContent = result[0].;
       let apiWeight = result[0].characteristics.weight;
       if (apiWeight === null || apiWeight === undefined) {
         document.getElementById("aStat-1").textContent = "Weight: unknown ";
@@ -40,11 +68,6 @@ function animalFetchApi(animalInput) {
       } else {
         document.getElementById("aStat-3").textContent = "Height: unknown";
       }
-
-      // below is a way to look if a variable has been defined or not
-      //   if (typeof variable === 'undefined') {
-      //     // variable is undefined
-      // }
     },
     error: function ajaxError(jqXHR) {
       console.error("Error: ", jqXHR.responseText);
@@ -55,22 +78,30 @@ function animalFetchApi(animalInput) {
   // animals = [name, height, weight, speed]
 }
 
-//event listener for click of animal search. will need to make animalInput a string from the user.
-const animalInput = document.querySelector("#search-input-animal");
-const animalButton = document.querySelector("#search-button-animal");
-
-function animalSearch() {
-  const userAnimalInput = animalInput.value.trim();
-  if (userAnimalInput) {
-    animalFetchApi(userAnimalInput);
-  }
-  // this can be an alert somewhere else.
-  else {
-    console.log("enter an animal");
-  }
+// fetching information using user input pokemon
+function pokemonFetchApi(userPokemonInput) {
+  console.log("step 1:", userPokemonInput);
+  let urlPokemon = `https://pokeapi.co/api/v2/pokemon/${userPokemonInput}`;
+  console.log(urlPokemon);
+  fetch(urlPokemon)
+    .then(function (response) {
+      // Check if the response is successful (status code 200-299)
+      if (!response.ok) {
+        throw new Error(`Error: ${response.statusText}`);
+      }
+      // Parse the response as JSON
+      return response.json();
+    })
+    .then(function (data) {
+      // Log the data from the response
+      console.log("step 2:", data);
+      // update the dom
+    })
+    .catch(function (error) {
+      // add this to the dom somewhere
+      console.error("Error, try again", error);
+    });
 }
-
-animalButton.addEventListener("click", animalSearch);
 
 //todo store to local storage
 
@@ -83,30 +114,53 @@ let animal = {
   height: "45in",
   speed: "70mph",
 };
-const animals = [animal];
-
-function createAnimalCard(animals) {
-  const cardH3 = $("<h3>").addClass("card-header-h3").text(animals.name);
-  const cardHeader = $(`#card-header`);
+function createAnimalCard(animal) {
+  const cardH3 = $("<h3>").addClass("card-header-h3").text(animal.name);
+  const cardHeader = $(`.a-card-header`);
   cardHeader.append(cardH3);
-  const animalHeight = $("<p>").addClass("card-stats").text(animals.height);
-  const animalWeight = $("<p>").addClass("card-stats").text(animals.weight);
-  const animalSpeed = $("<p>").addClass("card-stats").text(animals.speed);
-  const cardBody = $(`#card-body`);
+  const animalHeight = $("<p>").addClass("card-stats").text(animal.height);
+  const animalWeight = $("<p>").addClass("card-stats").text(animal.weight);
+  const animalSpeed = $("<p>").addClass("card-stats").text(animal.speed);
+  const cardBody = $(`.a-stats-content`);
   cardBody.append(animalHeight, animalWeight, animalSpeed);
   return;
 }
-console.log(animals);
-createAnimalCard(animals);
-console.log(animals);
+createAnimalCard(animal);
 
 //todo display pokemon cards
+let pokemon = {
+  name: "ditto",
+  weight: "40lbs",
+  height: "3ft",
+  speed: "48mph",
+};
+function createPokemonCard(pokemon) {
+  const cardH3 = $("<h3>").addClass("card-header-h3").text(pokemon.name);
+  const cardHeader = $(`.p-card-header`);
+  cardHeader.append(cardH3);
+  const animalHeight = $("<p>").addClass("card-stats").text(pokemon.height);
+  const animalWeight = $("<p>").addClass("card-stats").text(pokemon.weight);
+  const animalSpeed = $("<p>").addClass("card-stats").text(pokemon.speed);
+  const cardBody = $(`.p-stats-content`);
+  cardBody.append(animalHeight, animalWeight, animalSpeed);
+  return;
+}
+createPokemonCard(pokemon);
 
 //event listeners
 document.addEventListener("DOMContentLoaded", () => {
   // Functions to open and close a modal
   function openModal($el) {
     $el.classList.add("is-active");
+  }
+});
+
+//Lines 91-132 are for the modal functionality
+document.addEventListener("DOMContentLoaded", () => {
+  // Functions to open and close a modal
+  function openModal($el) {
+    $("#modal-js-animal").addClass("is-active");
+    $("#modal-js-pokemon").addClass("is-active");
   }
 
   function closeModal($el) {
@@ -149,3 +203,14 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 });
+
+//end of modal functionality
+
+//event listener for click of animal search. will need to make animalInput a string from the user.
+const animalInput = document.querySelector("#modal-input-animal");
+const animalButton = document.querySelector("#modal-button-animal");
+const pokemonInput = document.querySelector("#modal-input-pokemon"); // john's id: #userPokemonInput
+const pokemonButton = document.querySelector("#modal-button-pokemon");
+
+pokemonButton.addEventListener("click", pokemonSearch);
+animalButton.addEventListener("click", animalSearch);

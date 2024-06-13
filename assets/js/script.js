@@ -65,6 +65,7 @@ function animalFetchApi(animalInput) {
 const animalInput = document.querySelector('#search-input-animal');
 const animalButton = document.querySelector('#search-button-animal');
 
+
 function animalSearch() {
   const userAnimalInput = animalInput.value.trim();
   if (userAnimalInput) {
@@ -83,10 +84,12 @@ function animalSearch() {
 //todo get from local storage
 
 //todo display animal cards
+
+//Lines 91-132 are for the modal functionality
 document.addEventListener('DOMContentLoaded', () => {
   // Functions to open and close a modal
   function openModal($el) {
-    $el.classList.add('is-active');
+    $("#modal-js-example").addClass('is-active');
   }
 
   function closeModal($el) {
@@ -126,6 +129,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
+//end of modal functionality
 
 
 function pokemonFetchApi(userPokemonInput) {

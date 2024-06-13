@@ -69,7 +69,11 @@ const animalInput = document.querySelector('#search-input-animal');
 const animalButton = document.querySelector('#search-button-animal');
 
 function animalSearch(){
-  const userAnimalInput = "Dog";
+  const userAnimalInput = animalInput.value.trim();
+
+  // const userAnimalInput = "Dog";
+  // This above runs the modal when the button is clicked. 
+
   if (userAnimalInput){
     animalFetchApi(userAnimalInput);
   }

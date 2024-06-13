@@ -1,4 +1,34 @@
+// dealing with user input pokemon
+function pokemonSearch() {
+  const userPokemonInput = pokemonInput.value.trim();
+  console.log('User Pokemon Input', userPokemonInput);
+  pokemonFetchApi(userPokemonInput);
+  if (userPokemonInput) {
+    console.log("made it here")
+    
+  }
+  // this can be an alert somewhere else.
+  else {
+    console.log('enter a pokemon')
+  };
+};
 
+// dealing with user input animal
+function animalSearch(){
+  const userAnimalInput = animalInput.value.trim();
+  console.log('User Animal Input:', userAnimalInput);
+  // const userAnimalInput = "Dog";
+  // This above runs the modal when the button is clicked. 
+  if (userAnimalInput){
+    animalFetchApi(userAnimalInput);
+  }
+  // this can be an alert somewhere else.
+  else {
+    console.log('enter an animal')
+  };
+};
+
+// fetching information using user input animal
 function animalFetchApi(animalInput) {
   $.ajax({
     method: 'GET',
@@ -11,8 +41,6 @@ function animalFetchApi(animalInput) {
 
       // checking results for weight if they exist. if they don't dom updated with unknown
       // if it exists update dom with weight
-      // need to format weight info to look cleaner
-      // document.getElementById('api-animal-name').textContent = result[0].;
       let apiWeight = result[0].characteristics.weight
       if (apiWeight === null
         || apiWeight === undefined) {
@@ -57,29 +85,33 @@ function animalFetchApi(animalInput) {
   //createAnimalCard(animals)
   // note to bryan. information coming out of the api will be an array
   // animals = [name, height, weight, speed]
-
 }
 
+// fetching information using user input pokemon
+function pokemonFetchApi(userPokemonInput) {
+  console.log('step 1:', userPokemonInput);
+  let urlPokemon = `https://pokeapi.co/api/v2/pokemon/${userPokemonInput}`;
+  console.log(urlPokemon);
+  fetch(urlPokemon)
+    .then(function (response) {
+      // Check if the response is successful (status code 200-299)
+      if (!response.ok) {
+        throw new Error(`Error: ${response.statusText}`);
+      }
+      // Parse the response as JSON
+      return response.json();
+    })
+    .then(function (data) {
+      // Log the data from the response
+      console.log('step 2:', data);
+      // update the dom
 
-//event listener for click of animal search. will need to make animalInput a string from the user. 
-const animalInput = document.querySelector('#modal-input-animal');
-const animalButton = document.querySelector('#modal-button-animal');
-
-function animalSearch(){
-  const userAnimalInput = animalInput.value.trim();
-  console.log('User Animal Input', userAnimalInput);
-  // const userAnimalInput = "Dog";
-  // This above runs the modal when the button is clicked. 
-
-  if (userAnimalInput){
-    animalFetchApi(userAnimalInput);
-  }
-  // this can be an alert somewhere else.
-  else {
-    console.log('enter an animal')
-  };
-};
-
+    })
+    .catch(function (error) {
+      // add this to the dom somewhere
+      console.error('Error, try again', error);
+    });
+}; 
 
 
 //todo store to local storage
@@ -135,48 +167,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
 //end of modal functionality
 
-
-function pokemonFetchApi(userPokemonInput) {
-  console.log('step 1:', userPokemonInput);
-  let urlPokemon = `https://pokeapi.co/api/v2/pokemon/${userPokemonInput}`;
-  console.log(urlPokemon);
-  fetch(urlPokemon)
-    .then(function (response) {
-      // Check if the response is successful (status code 200-299)
-      if (!response.ok) {
-        throw new Error(`Error: ${response.statusText}`);
-      }
-      // Parse the response as JSON
-      return response.json();
-    })
-    .then(function (data) {
-      // Log the data from the response
-      console.log('step 2:', data);
-      // update the dom
-
-    })
-    .catch(function (error) {
-      // add this to the dom somewhere
-      console.error('Error, try again', error);
-    });
-}
-
-const pokemonInput = document.querySelector('#userPokemonInput');
+//event listener for click of animal search. will need to make animalInput a string from the user. 
+const animalInput = document.querySelector('#modal-input-animal');
+const animalButton = document.querySelector('#modal-button-animal');
+const pokemonInput = document.querySelector('#modal-input-pokemon');   // john's id: #userPokemonInput
 const pokemonButton = document.querySelector('#modal-button-pokemon'); 
 
-function pokemonSearch() {
-  const userPokemonInput = pokemonInput.value.trim();
-  console.log('User Pokemon Input', userPokemonInput);
-  pokemonFetchApi(userPokemonInput);
-  if (userPokemonInput) {
-    console.log("made it here")
-    
-  }
-  // this can be an alert somewhere else.
-  else {
-    console.log('enter a pokemon')
-  };
-};
-
 pokemonButton.addEventListener('click', pokemonSearch);
-// animalButton.addEventListener('click', animalSearch);
+animalButton.addEventListener('click', animalSearch);

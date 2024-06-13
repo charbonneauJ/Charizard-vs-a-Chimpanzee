@@ -62,9 +62,8 @@ function animalFetchApi(animalInput) {
 
 
 //event listener for click of animal search. will need to make animalInput a string from the user. 
-const animalInput = document.querySelector('#search-input-animal');
-const animalButton = document.querySelector('#search-button-animal');
-
+const animalInput = document.querySelector('#modal-input-animal');
+const animalButton = document.querySelector('#modal-button-animal');
 
 function animalSearch() {
   const userAnimalInput = animalInput.value.trim();
@@ -157,8 +156,8 @@ function pokemonFetchApi(userPokemonInput) {
     });
 }
 
-const pokemonInput = document.querySelector('#search-input-pokemon');
-const pokemonButton = document.querySelector('#search-button-pokemon');
+const pokemonInput = document.querySelector('#modal-input-pokemon');
+const pokemonButton = document.querySelector('#modal-button-pokemon');
 
 function pokemonSearch() {
   const userPokemonInput = pokemonInput.value.trim();

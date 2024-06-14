@@ -1,42 +1,43 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset='utf-8'>
-    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-    <title>Page Title</title>
-    <meta name='viewport' content='width=device-width, initial-scale=1'>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Favorites</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" type="text/css" href="./assets/css/reset.css" />
     <link rel="stylesheet" type="text/css" href="./assets/css/style.css" />
-    <script src='./assets/js/script.js'></script>
-</head>
-<body>
+    <script src="./assets/js/faves.js"></script>
+  </head>
+  <body>
     <header>
-        <h1>Charizard vs a Chimpanzee</h1>
-        
-        <nav>
-            <ul>
-                <li><a href="./index.html">Back to Landing Page</a></li>
-                <li><a href="#">View Favorites or Something</a></li>
-            </ul>
-        </nav>
+      <h1>Charizard vs a Chimpanzee</h1>
+
+      <nav class="navbar" role="navigation">
+        <ul>
+          <li>
+            <a class="navbar-item" href="./index.html">Back to Landing Page</a>
+          </li>
+          <li>
+            <a class="navbar-item" href="#">View Favorites or Something</a>
+          </li>
+        </ul>
+      </nav>
     </header>
 
-    <div>
-        <h2>Favorite Animal</h2>
-        <p id="fav-animal"></p>
-        <p id="aFavStat-1"></p>
-        <p id="aFavStat-2"></p>
-        <p id="aFavStat-3"></p>
+    <div class="Favorite-Animal-content">
+      <h2>Favorite Animal</h2>
+      <p class="fav-animal-name" id="fav-animal"></p>
+      <p id="aFavStat-1"></p>
+      <p id="aFavStat-2"></p>
+      <p id="aFavStat-3"></p>
     </div>
-    <div>
-        <h2>Favorite Pokemon</h2>
-        <p id="fav-poke"></p>
-        <p id="pFavStat-1"></p>
-        <p id="pFavStat-2"></p>
-        <p id="pFavStat-3"></p>
+    <div class="Favorite-Pokemon-content">
+      <h2>Favorite Pokemon</h2>
+      <p class="fav-poke-name" id="fav-poke"></p>
+      <p id="pFavStat-1"></p>
+      <p id="pFavStat-2"></p>
+      <p id="pFavStat-3"></p>
     </div>
-
-</body>
-
-
+  </body>
 </html>

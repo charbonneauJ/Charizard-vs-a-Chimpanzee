@@ -36,7 +36,7 @@ function animalFetchApi(animalInput) {
     headers: { "X-Api-Key": "LOHrIg46z+hgQ1p2e+L3QQ==Nr61dc7r4QFJEkxi" },
     contentType: "application/json",
     success: function (result) {
-      console.log(`ninja api`, result[0]);
+      console.log(`ninja api`, result[0]); //eventually delete
       let animalRenWeight, animalRenSpeed, animalRenHeight;
       // checking results for weight if they exist. if they don't dom updated with unknown
       // if it exists update dom with weight
@@ -66,10 +66,7 @@ function animalFetchApi(animalInput) {
       } else {
         animalRenHeight = "Height: unknown";
       }
-      console.log('name', animalInput)
-      console.log('weight', animalRenWeight)
-      console.log('height', animalRenHeight)
-      console.log('speed', animalRenSpeed)
+    
       const animal = {
         name: animalInput, 
         weight: animalRenWeight, 
@@ -88,7 +85,6 @@ function animalFetchApi(animalInput) {
 
 // fetching information using user input pokemon
 function pokemonFetchApi(userPokemonInput) {
-  console.log("step 1:", userPokemonInput);
   let urlPokemon = `https://pokeapi.co/api/v2/pokemon/${userPokemonInput}`;
   console.log(urlPokemon);
   fetch(urlPokemon)
@@ -104,16 +100,23 @@ function pokemonFetchApi(userPokemonInput) {
       // Log the data from the response
       console.log("step 2:", data);
       // update the dom
-      let pokeApiWeight = data.weight
+      let pokeApiWeight = Math.round(((data.weight)/10)*2.20462, 0 ); // converts to lbs
       console.log('pokemon weight:', pokeApiWeight);
-      let pokeApiHeight = ((data.height) / 10) * 3.28084;
-      console.log('height in ft', pokeApiHeight);
-      // let feet = Math.floor(feet);
-      // let inches = math.round((pokeApiHeight - feet)*12);
-      // const realPokeHeight = `feet ${feet}"'" inches ${inches}"""`;
-      // console.log(realPokeHeight);
-      let pokeApiSpeed = data.stats[5].base_stat;
-      console.log('speed: ', pokeApiSpeed);
+      let pokeApiHeight = ((data.height) / 10) * 3.28084; //converts to feet in decimal format
+      // converting decimal height to feet and inches
+      let feet = Math.floor(pokeApiHeight);
+      let inches = Math.round((pokeApiHeight - feet)*12);
+      const realPokeHeight = `feet ${feet}\' inches ${inches}\"`;
+      let pokeApiSpeed = Math.round( (data.stats[5].base_stat)*.621371, 0); // converts to mph      
+      let pokemon = {
+        name: userPokemonInput,
+        weight: pokeApiWeight,
+        height: realPokeHeight,
+        speed: pokeApiSpeed,
+      };
+      
+      createPokemonCard(pokemon);
+
       //  .catch(function (error) {
       //       // add this to the dom somewhere
       //       console.error("Error, try again", error);
@@ -149,12 +152,7 @@ function createAnimalCard(animal) {
 }
 
 //todo display pokemon cards
-let pokemon = {
-  name: "Ditto",
-  weight: "40lbs",
-  height: "3ft",
-  speed: "48mph",
-};
+
 function createPokemonCard(pokemon) {
   const cardH3 = $("<h3>").addClass("card-header-h3").text(pokemon.name);
   const cardHeader = $(`.p-card-header`);
@@ -168,7 +166,7 @@ function createPokemonCard(pokemon) {
   cardBody.append(animalHeight, animalWeight, animalSpeed);
   return;
 }
-createPokemonCard(pokemon);
+
 
 //event listeners
 document.addEventListener("DOMContentLoaded", () => {

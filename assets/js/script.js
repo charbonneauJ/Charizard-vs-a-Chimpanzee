@@ -275,7 +275,7 @@ document.addEventListener('DOMContentLoaded', () => {
 //event listener for click of animal search. will need to make animalInput a string from the user. 
 const animalInput = document.querySelector('#userAnimalInput');
 const animalButton = document.querySelector('#modal-button-animal');
-const pokemonInput = document.querySelector('#modal-input-pokemon');   // john's id: #userPokemonInput
+const pokemonInput = document.querySelector('#userPokemonInput');   // john's id: #
 const pokemonButton = document.querySelector('#modal-button-pokemon');
 
 

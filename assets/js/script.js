@@ -142,7 +142,7 @@ createAnimalCard(animal);
 
 //todo display pokemon cards
 let pokemon = {
-  name: "ditto",
+  name: "Ditto",
   weight: "40lbs",
   height: "3ft",
   speed: "48mph",
@@ -152,7 +152,7 @@ function createPokemonCard(pokemon) {
   const cardHeader = $(`.p-card-header`);
   cardHeader.append(cardH3);
   const pokemonImage = $(`.p-img`);
-  pokemonmage.append();
+  pokemonImage.append();
   const animalHeight = $("<p>").addClass("card-stats").text(pokemon.height);
   const animalWeight = $("<p>").addClass("card-stats").text(pokemon.weight);
   const animalSpeed = $("<p>").addClass("card-stats").text(pokemon.speed);

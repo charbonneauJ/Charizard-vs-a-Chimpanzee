@@ -38,46 +38,53 @@ function animalFetchApi(animalInput) {
     contentType: "application/json",
     success: function (result) {
       console.log(`ninja api`, result[0]);
-
+      let animalRenWeight, animalRenSpeed, animalRenHeight;
       // checking results for weight if they exist. if they don't dom updated with unknown
       // if it exists update dom with weight
       let apiWeight = result[0].characteristics.weight;
       if (apiWeight === null || apiWeight === undefined) {
-        document.getElementById("aStat-1").textContent = "Weight: unknown ";
+        animalRenWeight = "Weight: unknown ";
       } else {
-        let weight = apiWeight;
-        document.getElementById("aStat-1").textContent = `Weight: ${weight}`;
-        console.log("Weight: ", weight);
+        animalRenWeight = apiWeight;
       }
       // checking for speed, updating dom with info
       let apiSpeed = result[0].characteristics.top_speed;
       if (apiSpeed === null || apiSpeed === undefined) {
-        document.getElementById("aStat-2").textContent = "Speed: unknown ";
+        animalRenSpeed = "Speed: unknown ";
       } else {
-        let speed = apiSpeed;
-        document.getElementById("aStat-2").textContent = `Speed: ${speed} `;
+        animalRenSpeed = apiSpeed;
       }
       // checking for height
       let apiHeight = result[0].characteristics.height;
       if (apiHeight !== null && apiHeight !== undefined) {
-        document.getElementById("aStat-3").textContent = `Height: ${apiHeight}`;
+        animalRenHeight = apiHeight;
       } else if (
         result[0].characteristics.length !== null &&
         result[0].characteristics.length !== undefined
       ) {
-        let length = result[0].characteristics.length;
-        document.getElementById("aStat-3").textContent = `Length: ${length}`;
+        animalRenHeight = result[0].characteristics.length;
+
       } else {
-        document.getElementById("aStat-3").textContent = "Height: unknown";
+        animalRenHeight = "Height: unknown";
       }
+      console.log('name', animalInput)
+      console.log('weight', animalRenWeight)
+      console.log('height', animalRenHeight)
+      console.log('speed', animalRenSpeed)
+      const animal = {
+        name: animalInput, 
+        weight: animalRenWeight, 
+        height: animalRenHeight,
+        speed: animalRenSpeed ,
+      }
+      console.log('animal:', animal)
+      createAnimalCard(animal);
     },
-    error: function ajaxError(jqXHR) {
-      console.error("Error: ", jqXHR.responseText);
-    },
+    // error: function ajaxError(jqXHR) {
+    //   console.error("Error: ", jqXHR.responseText);
+    // },
   });
-  //createAnimalCard(animals)
-  // note to bryan. information coming out of the api will be an array
-  // animals = [name, height, weight, speed]
+
 }
 
 // fetching information using user input pokemon
@@ -100,7 +107,7 @@ function pokemonFetchApi(userPokemonInput) {
       // update the dom
       let pokeApiWeight = data.weight
       console.log('pokemon weight:', pokeApiWeight);
-      let pokeApiHeight = ((data.height)/10)*3.28084;
+      let pokeApiHeight = ((data.height) / 10) * 3.28084;
       console.log('height in ft', pokeApiHeight);
       // let feet = Math.floor(feet);
       // let inches = math.round((pokeApiHeight - feet)*12);
@@ -108,12 +115,11 @@ function pokemonFetchApi(userPokemonInput) {
       // console.log(realPokeHeight); 
       let pokeApiSpeed = data.stats[5].base_stat;
       console.log('speed: ', pokeApiSpeed);
- .catch(function (error) {
-      // add this to the dom somewhere
-      console.error("Error, try again", error);
-    });
- })
-   
+      //  .catch(function (error) {
+      //       // add this to the dom somewhere
+      //       console.error("Error, try again", error);
+      //     });
+    })
 
 };
 
@@ -123,12 +129,12 @@ function pokemonFetchApi(userPokemonInput) {
 //todo get from local storage
 
 //todo display animal cards
-let animal = {
-  name: "Cheetah",
-  weight: "100lbs",
-  height: "45in",
-  speed: "70mph",
-};
+// let animal = {
+//   name: "Cheetah",
+//   weight: "100lbs",
+//   height: "45in",
+//   speed: "70mph",
+// };
 function createAnimalCard(animal) {
   const cardH3 = $("<h3>").addClass("card-header-h3").text(animal.name);
   const cardHeader = $(`.a-card-header`);
@@ -140,7 +146,6 @@ function createAnimalCard(animal) {
   cardBody.append(animalHeight, animalWeight, animalSpeed);
   return;
 }
-createAnimalCard(animal);
 
 //todo display pokemon cards
 let pokemon = {

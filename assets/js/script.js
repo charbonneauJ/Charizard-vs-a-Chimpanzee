@@ -124,8 +124,8 @@ function pokemonFetchApi(userPokemonInput) {
 document.addEventListener('DOMContentLoaded', () => {
   // Functions to open and close a modal
   function openModal($el) {
-    $("#modal-js-example").addClass('is-active');
-    $("#modal-js-example1").addClass('is-active');
+    $("#modal-js-animal").addClass('is-active');
+    $("#modal-js-pokemon").addClass('is-active');
   }
 
   function closeModal($el) {

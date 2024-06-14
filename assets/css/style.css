@@ -60,6 +60,34 @@ body {
   color: wheat;
 }
 
+.Favorite-Animal-content {
+  display: flex;
+  flex-direction: column;
+  padding: 1%;
+  margin: 0.5%;
+  width: 10vw;
+  align-content: center;
+  background-color: gold;
+  color: antiquewhite;
+}
+
+.Favorite-Pokemon-content {
+  display: flex;
+  flex-direction: column;
+  padding: 1%;
+  margin: 0.5%;
+  width: 10vw;
+  align-content: center;
+  background-color: silver;
+  color: antiquewhite;
+}
+
+.fav-animal-name {
+}
+
+.fav-poke-name {
+}
+
 header {
 }
 

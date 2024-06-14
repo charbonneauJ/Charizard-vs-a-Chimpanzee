@@ -62,25 +62,23 @@ function animalFetchApi(animalInput) {
         result[0].characteristics.length !== undefined
       ) {
         animalRenHeight = result[0].characteristics.length;
-
       } else {
         animalRenHeight = "Height: unknown";
       }
-    
+
       const animal = {
-        name: animalInput, 
-        weight: animalRenWeight, 
+        name: animalInput,
+        weight: animalRenWeight,
         height: animalRenHeight,
-        speed: animalRenSpeed ,
-      }
-      console.log('animal:', animal)
+        speed: animalRenSpeed,
+      };
+      console.log("animal:", animal);
       createAnimalCard(animal);
     },
     // error: function ajaxError(jqXHR) {
     //   console.error("Error: ", jqXHR.responseText);
     // },
   });
-
 }
 
 // fetching information using user input pokemon
@@ -100,31 +98,29 @@ function pokemonFetchApi(userPokemonInput) {
       // Log the data from the response
       console.log("step 2:", data);
       // update the dom
-      let pokeApiWeight = Math.round(((data.weight)/10)*2.20462, 0 ); // converts to lbs
-      console.log('pokemon weight:', pokeApiWeight);
-      let pokeApiHeight = ((data.height) / 10) * 3.28084; //converts to feet in decimal format
+      let pokeApiWeight = Math.round((data.weight / 10) * 2.20462, 0); // converts to lbs
+      console.log("pokemon weight:", pokeApiWeight);
+      let pokeApiHeight = (data.height / 10) * 3.28084; //converts to feet in decimal format
       // converting decimal height to feet and inches
       let feet = Math.floor(pokeApiHeight);
-      let inches = Math.round((pokeApiHeight - feet)*12);
+      let inches = Math.round((pokeApiHeight - feet) * 12);
       const realPokeHeight = `feet ${feet}\' inches ${inches}\"`;
-      let pokeApiSpeed = Math.round( (data.stats[5].base_stat)*.621371, 0); // converts to mph      
+      let pokeApiSpeed = Math.round(data.stats[5].base_stat * 0.621371, 0); // converts to mph
       let pokemon = {
         name: userPokemonInput,
         weight: pokeApiWeight,
         height: realPokeHeight,
         speed: pokeApiSpeed,
       };
-      
+
       createPokemonCard(pokemon);
 
       //  .catch(function (error) {
       //       // add this to the dom somewhere
       //       console.error("Error, try again", error);
       //     });
-    })
-
-};
-
+    });
+}
 
 //todo store to local storage
 
@@ -138,35 +134,22 @@ function pokemonFetchApi(userPokemonInput) {
 //   speed: "70mph",
 // };
 function createAnimalCard(animal) {
-  const cardH3 = $("<h3>").addClass("card-header-h3").text(animal.name);
-  const cardHeader = $(`.a-card-header`);
-  cardHeader.append(cardH3);
-  const animalImage = $(`.a-img`);
-  animalImage.append();
-  const animalHeight = $("<p>").addClass("card-stats").text(animal.height);
-  const animalWeight = $("<p>").addClass("card-stats").text(animal.weight);
-  const animalSpeed = $("<p>").addClass("card-stats").text(animal.speed);
-  const cardBody = $(`.a-stats-content`);
-  cardBody.append(animalHeight, animalWeight, animalSpeed);
+  $(`.a-card-header`).addClass("card-header-h3").text(animal.name);
+  $(`#aStat-1`).addClass("card-stats").text(animal.height);
+  $(`#aStat-2`).addClass("card-stats").text(animal.weight);
+  $(`#aStat-3`).addClass("card-stats").text(animal.speed);
   return;
 }
 
 //todo display pokemon cards
 
 function createPokemonCard(pokemon) {
-  const cardH3 = $("<h3>").addClass("card-header-h3").text(pokemon.name);
-  const cardHeader = $(`.p-card-header`);
-  cardHeader.append(cardH3);
-  const pokemonImage = $(`.p-img`);
-  pokemonImage.append();
-  const animalHeight = $("<p>").addClass("card-stats").text(pokemon.height);
-  const animalWeight = $("<p>").addClass("card-stats").text(pokemon.weight);
-  const animalSpeed = $("<p>").addClass("card-stats").text(pokemon.speed);
-  const cardBody = $(`.p-stats-content`);
-  cardBody.append(animalHeight, animalWeight, animalSpeed);
+  $(`.p-card-header`).addClass("card-header-h3").text(pokemon.name);
+  $(`#pStat-1`).addClass("card-stats").text(pokemon.height);
+  $(`#pStat-2`).addClass("card-stats").text(pokemon.weight);
+  $(`#pStat-3`).addClass("card-stats").text(pokemon.speed);
   return;
 }
-
 
 //event listeners
 document.addEventListener("DOMContentLoaded", () => {
@@ -282,3 +265,5 @@ const pokemonButton = document.querySelector("#modal-button-pokemon");
 
 pokemonButton.addEventListener("click", pokemonSearch);
 animalButton.addEventListener("click", animalSearch);
+
+//todo add event listener for faves button

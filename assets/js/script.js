@@ -1,4 +1,3 @@
-
 function animalFetchApi(animalInput) {
   $.ajax({
     method: 'GET',
@@ -62,16 +61,12 @@ function animalFetchApi(animalInput) {
 
 
 //event listener for click of animal search. will need to make animalInput a string from the user. 
-const animalInput = document.querySelector('#modal-input-animal');
+const animalInput = document.querySelector('#userAnimalInput');
 const animalButton = document.querySelector('#modal-button-animal');
 
-function animalSearch(){
+function animalSearch() {
   const userAnimalInput = animalInput.value.trim();
-  console.log('User Animal Input', userAnimalInput);
-  // const userAnimalInput = "Dog";
-  // This above runs the modal when the button is clicked. 
-
-  if (userAnimalInput){
+  if (userAnimalInput) {
     animalFetchApi(userAnimalInput);
   }
   // this can be an alert somewhere else.
@@ -92,8 +87,7 @@ function animalSearch(){
 document.addEventListener('DOMContentLoaded', () => {
   // Functions to open and close a modal
   function openModal($el) {
-    $("#modal-js-animal").addClass('is-active');
-    $("#modal-js-pokemon").addClass('is-active');
+    $("#modal-js-example").addClass('is-active');
   }
 
   function closeModal($el) {
@@ -106,8 +100,58 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+
   // Add a click event on buttons to open a specific modal
   (document.querySelectorAll('.js-modal-trigger') || []).forEach(($trigger) => {
+    const modal = $trigger.dataset.target;
+    const $target = document.getElementById(modal);
+
+    $trigger.addEventListener('click', () => {
+      openModal($target);
+    });
+  });
+
+  // Add a click event on various child elements to close the parent modal
+  (document.querySelectorAll('.modal-background, .modal-close, .modal-card-head .delete, .modal-card-foot .button') || []).forEach(($close) => {
+    const $target = $close.closest('.modal');
+
+    $close.addEventListener('click', () => {
+      closeModal($target);
+    });
+  });
+
+  // Add a keyboard event to close all modals
+  document.addEventListener('keydown', (event) => {
+    if (event.key === "Escape") {
+      closeAllModals();
+    }
+  });
+});
+
+
+
+
+//Lines 91-132 are for the modal functionality
+document.addEventListener('DOMContentLoaded', () => {
+  // Functions to open and close a modal
+  function openModal($el) {
+    $("#modal-js-example1").addClass('is-active');
+  }
+
+  function closeModal($el) {
+    $el.classList.remove('is-active');
+  }
+
+  function closeAllModals() {
+    (document.querySelectorAll('.modal') || []).forEach(($modal) => {
+      closeModal($modal);
+    });
+  }
+
+
+
+  // Add a click event on buttons to open a specific modal
+  (document.querySelectorAll('.modal-trigger') || []).forEach(($trigger) => {
     const modal = $trigger.dataset.target;
     const $target = document.getElementById(modal);
 
@@ -162,15 +206,12 @@ function pokemonFetchApi(userPokemonInput) {
 }
 
 const pokemonInput = document.querySelector('#userPokemonInput');
-const pokemonButton = document.querySelector('#modal-button-pokemon'); 
+const pokemonButton = document.querySelector('#modal-button-pokemon');
 
 function pokemonSearch() {
   const userPokemonInput = pokemonInput.value.trim();
-  console.log('User Pokemon Input', userPokemonInput);
-  pokemonFetchApi(userPokemonInput);
   if (userPokemonInput) {
-    console.log("made it here")
-    
+    pokemonFetchApi(userPokemonInput);
   }
   // this can be an alert somewhere else.
   else {
@@ -179,4 +220,4 @@ function pokemonSearch() {
 };
 
 pokemonButton.addEventListener('click', pokemonSearch);
-// animalButton.addEventListener('click', animalSearch);
+animalButton.addEventListener('click', animalSearch);

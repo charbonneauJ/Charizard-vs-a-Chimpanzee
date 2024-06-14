@@ -7,6 +7,32 @@ body {
   padding: 1%;
 }
 
+.a-card-content {
+  display: flex;
+  flex-direction: column;
+  padding: 1%;
+  margin: 0.5%;
+  width: 10vw;
+  align-content: center;
+  background-color: gold;
+  color: antiquewhite;
+}
+
+.a-card-header {
+  padding: 10%;
+  margin: 10%;
+  width: fit-content;
+  background-color: darkslategray;
+  color: wheat;
+}
+
+.a-stats-content {
+  padding: 10%;
+  margin: 10%;
+  width: fit-content;
+  background-color: navy;
+}
+
 header {
 }
 

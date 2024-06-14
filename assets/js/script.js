@@ -5,7 +5,7 @@ function pokemonSearch() {
   pokemonFetchApi(userPokemonInput);
   if (userPokemonInput) {
     console.log("made it here")
-    
+
   }
   // this can be an alert somewhere else.
   else {
@@ -14,12 +14,12 @@ function pokemonSearch() {
 };
 
 // dealing with user input animal
-function animalSearch(){
+function animalSearch() {
   const userAnimalInput = animalInput.value.trim();
   console.log('User Animal Input:', userAnimalInput);
   // const userAnimalInput = "Dog";
   // This above runs the modal when the button is clicked. 
-  if (userAnimalInput){
+  if (userAnimalInput) {
     animalFetchApi(userAnimalInput);
   }
   // this can be an alert somewhere else.
@@ -105,13 +105,23 @@ function pokemonFetchApi(userPokemonInput) {
       // Log the data from the response
       console.log('step 2:', data);
       // update the dom
+      let pokeApiWeight = data.weight
+      console.log('pokemon weight:', pokeApiWeight);
+      let pokeApiHeight = ((data.height)/10)*3.28084;
+      console.log('height in ft', pokeApiHeight);
+      // let feet = Math.floor(feet);
+      // let inches = math.round((pokeApiHeight - feet)*12);
+      // const realPokeHeight = `feet ${feet}"'" inches ${inches}"""`;
+      // console.log(realPokeHeight); 
+      let pokeApiSpeed = data.stats[5].base_stat;
+      console.log('speed: ', pokeApiSpeed);
 
     })
     .catch(function (error) {
       // add this to the dom somewhere
       console.error('Error, try again', error);
     });
-}; 
+};
 
 
 //todo store to local storage
@@ -171,7 +181,7 @@ document.addEventListener('DOMContentLoaded', () => {
 const animalInput = document.querySelector('#modal-input-animal');
 const animalButton = document.querySelector('#modal-button-animal');
 const pokemonInput = document.querySelector('#modal-input-pokemon');   // john's id: #userPokemonInput
-const pokemonButton = document.querySelector('#modal-button-pokemon'); 
+const pokemonButton = document.querySelector('#modal-button-pokemon');
 
 pokemonButton.addEventListener('click', pokemonSearch);
 animalButton.addEventListener('click', animalSearch);

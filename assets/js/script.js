@@ -1,11 +1,10 @@
-
 // dealing with user input pokemon
 function pokemonSearch() {
   const userPokemonInput = pokemonInput.value.trim();
   console.log("User Pokemon Input", userPokemonInput);
   pokemonFetchApi(userPokemonInput);
   if (userPokemonInput) {
-    console.log("made it here")
+    console.log("made it here");
   }
   // this can be an alert somewhere else.
   else {
@@ -18,7 +17,7 @@ function animalSearch() {
   const userAnimalInput = animalInput.value.trim();
   console.log("User Animal Input:", userAnimalInput);
   // const userAnimalInput = "Dog";
-  // This above runs the modal when the button is clicked. 
+  // This above runs the modal when the button is clicked.
   if (userAnimalInput) {
     animalFetchApi(userAnimalInput);
   }
@@ -112,7 +111,7 @@ function pokemonFetchApi(userPokemonInput) {
       // let feet = Math.floor(feet);
       // let inches = math.round((pokeApiHeight - feet)*12);
       // const realPokeHeight = `feet ${feet}"'" inches ${inches}"""`;
-      // console.log(realPokeHeight); 
+      // console.log(realPokeHeight);
       let pokeApiSpeed = data.stats[5].base_stat;
       console.log('speed: ', pokeApiSpeed);
       //  .catch(function (error) {
@@ -139,6 +138,8 @@ function createAnimalCard(animal) {
   const cardH3 = $("<h3>").addClass("card-header-h3").text(animal.name);
   const cardHeader = $(`.a-card-header`);
   cardHeader.append(cardH3);
+  const animalImage = $(`.a-img`);
+  animalImage.append();
   const animalHeight = $("<p>").addClass("card-stats").text(animal.height);
   const animalWeight = $("<p>").addClass("card-stats").text(animal.weight);
   const animalSpeed = $("<p>").addClass("card-stats").text(animal.speed);
@@ -149,7 +150,7 @@ function createAnimalCard(animal) {
 
 //todo display pokemon cards
 let pokemon = {
-  name: "ditto",
+  name: "Ditto",
   weight: "40lbs",
   height: "3ft",
   speed: "48mph",
@@ -158,6 +159,8 @@ function createPokemonCard(pokemon) {
   const cardH3 = $("<h3>").addClass("card-header-h3").text(pokemon.name);
   const cardHeader = $(`.p-card-header`);
   cardHeader.append(cardH3);
+  const pokemonImage = $(`.p-img`);
+  pokemonImage.append();
   const animalHeight = $("<p>").addClass("card-stats").text(pokemon.height);
   const animalWeight = $("<p>").addClass("card-stats").text(pokemon.weight);
   const animalSpeed = $("<p>").addClass("card-stats").text(pokemon.speed);
@@ -179,9 +182,7 @@ document.addEventListener("DOMContentLoaded", () => {
 document.addEventListener("DOMContentLoaded", () => {
   // Functions to open and close a modal
   function openModal($el) {
-
-    $("#modal-js-example").addClass('is-active');
-
+    $("#modal-js-example").addClass("is-active");
   }
 
   function closeModal($el) {
@@ -193,7 +194,6 @@ document.addEventListener("DOMContentLoaded", () => {
       closeModal($modal);
     });
   }
-
 
   // Add a click event on buttons to open a specific modal
   (document.querySelectorAll(".js-modal-trigger") || []).forEach(($trigger) => {
@@ -226,49 +226,48 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-
-
-
 //Lines 91-132 are for the modal functionality
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener("DOMContentLoaded", () => {
   // Functions to open and close a modal
   function openModal($el) {
-    $("#modal-js-example1").addClass('is-active');
+    $("#modal-js-example1").addClass("is-active");
   }
 
   function closeModal($el) {
-    $el.classList.remove('is-active');
+    $el.classList.remove("is-active");
   }
 
   function closeAllModals() {
-    (document.querySelectorAll('.modal') || []).forEach(($modal) => {
+    (document.querySelectorAll(".modal") || []).forEach(($modal) => {
       closeModal($modal);
     });
   }
 
-
-
   // Add a click event on buttons to open a specific modal
-  (document.querySelectorAll('.modal-trigger') || []).forEach(($trigger) => {
+  (document.querySelectorAll(".modal-trigger") || []).forEach(($trigger) => {
     const modal = $trigger.dataset.target;
     const $target = document.getElementById(modal);
 
-    $trigger.addEventListener('click', () => {
+    $trigger.addEventListener("click", () => {
       openModal($target);
     });
   });
 
   // Add a click event on various child elements to close the parent modal
-  (document.querySelectorAll('.modal-background, .modal-close, .modal-card-head .delete, .modal-card-foot .button') || []).forEach(($close) => {
-    const $target = $close.closest('.modal');
+  (
+    document.querySelectorAll(
+      ".modal-background, .modal-close, .modal-card-head .delete, .modal-card-foot .button"
+    ) || []
+  ).forEach(($close) => {
+    const $target = $close.closest(".modal");
 
-    $close.addEventListener('click', () => {
+    $close.addEventListener("click", () => {
       closeModal($target);
     });
   });
 
   // Add a keyboard event to close all modals
-  document.addEventListener('keydown', (event) => {
+  document.addEventListener("keydown", (event) => {
     if (event.key === "Escape") {
       closeAllModals();
     }
@@ -277,14 +276,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
 //end of modal functionality
 
-//event listener for click of animal search. will need to make animalInput a string from the user. 
-const animalInput = document.querySelector('#userAnimalInput');
-const animalButton = document.querySelector('#modal-button-animal');
-const pokemonInput = document.querySelector('#userPokemonInput');   // john's id: #
-const pokemonButton = document.querySelector('#modal-button-pokemon');
+//event listener for click of animal search. will need to make animalInput a string from the user.
+const animalInput = document.querySelector("#userAnimalInput");
+const animalButton = document.querySelector("#modal-button-animal");
+const pokemonInput = document.querySelector("#userPokemonInput"); // john's id: #
+const pokemonButton = document.querySelector("#modal-button-pokemon");
 
-
-
-pokemonButton.addEventListener('click', pokemonSearch);
-animalButton.addEventListener('click', animalSearch);
-
+pokemonButton.addEventListener("click", pokemonSearch);
+animalButton.addEventListener("click", animalSearch);

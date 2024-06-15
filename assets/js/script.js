@@ -74,6 +74,7 @@ function animalFetchApi(animalInput) {
       };
       console.log("animal:", animal);
       createAnimalCard(animal);
+      localStorage.setItem("animal", JSON.stringify(animal));
     },
     // error: function ajaxError(jqXHR) {
     //   console.error("Error: ", jqXHR.responseText);
@@ -114,6 +115,7 @@ function pokemonFetchApi(userPokemonInput) {
       };
 
       createPokemonCard(pokemon);
+      localStorage.setItem("pokemon", JSON.stringify(pokemon));
 
       //  .catch(function (error) {
       //       // add this to the dom somewhere
@@ -122,9 +124,14 @@ function pokemonFetchApi(userPokemonInput) {
     });
 }
 
-//todo store to local storage
+//todo store faves to local storage
+function storeAnFave() {
+  localStorage.setItem("animal", JSON.stringify(animal));
+}
 
-//todo get from local storage
+function storePoFave() {
+  localStorage.setItem("pokemon", JSON.stringify(pokemon));
+}
 
 //todo display animal cards
 // let animal = {
@@ -134,7 +141,7 @@ function pokemonFetchApi(userPokemonInput) {
 //   speed: "70mph",
 // };
 function createAnimalCard(animal) {
-  $(`.a-card-header`).addClass("card-header-h3").text(animal.name);
+  $(`.a-card-header`).addClass("card-header h3").text(animal.name);
   $(`#aStat-1`).addClass("card-stats").text(animal.height);
   $(`#aStat-2`).addClass("card-stats").text(animal.weight);
   $(`#aStat-3`).addClass("card-stats").text(animal.speed);
@@ -144,7 +151,7 @@ function createAnimalCard(animal) {
 //todo display pokemon cards
 
 function createPokemonCard(pokemon) {
-  $(`.p-card-header`).addClass("card-header-h3").text(pokemon.name);
+  $(`.p-card-header`).addClass("card-header h3").text(pokemon.name);
   $(`#pStat-1`).addClass("card-stats").text(pokemon.height);
   $(`#pStat-2`).addClass("card-stats").text(pokemon.weight);
   $(`#pStat-3`).addClass("card-stats").text(pokemon.speed);
@@ -266,4 +273,9 @@ const pokemonButton = document.querySelector("#modal-button-pokemon");
 pokemonButton.addEventListener("click", pokemonSearch);
 animalButton.addEventListener("click", animalSearch);
 
-//todo add event listener for faves button
+//todo add event listener for animal faves button
+const anFaveInput = document.querySelector(`#an-fave`);
+const poFaveInput = document.querySelector(`#po-fave`);
+
+anFaveInput.addEventListener("click", storeAnFave);
+poFaveInput.addEventListener("click", storePoFave);

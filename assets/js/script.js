@@ -193,12 +193,12 @@ function animalFilter(result, animalInput) {
 //create animal cards, save to local storage and add favorite to Favorites.html
 function createAnimalCard(animal) {
 
-  let header = $(`<h3></h3>`).addClass("card-header-h3").text(animal.name);
-  let cardstat1 = $(`<p></p>`).addClass("card-stats").text(animal.height);
-  let cardstat2 = $(`<p></p>`).addClass("card-stats").text(animal.weight);
-  let cardstat3 = $(`<p></p>`).addClass("card-stats").text(animal.speed);
+  let header = $(`<h3></h3>`).addClass("card-header-h3 is-size-5 has-text-dark").text(`Name: ${animal.name}`) 
+  let cardstat1 = $(`<p></p>`).addClass("card-stats").text(`Height: ${animal.height}`);
+  let cardstat2 = $(`<p></p>`).addClass("card-stats").text(`Weight: ${animal.weight}`);
+  let cardstat3 = $(`<p></p>`).addClass("card-stats").text(`Speed: ${animal.speed}`);
   let footer = $(`<div></div>`);
-  let addButton = $(`<button></button>`).text("Add to Favorites");
+  let addButton = $(`<button></button>`).text("Add to Favorites").addClass("button is-white");
   addButton.click(function () {
     let newAnimal = {
       name: animal.name,
@@ -212,9 +212,53 @@ function createAnimalCard(animal) {
     localStorage.setItem("animalFavorites", JSON.stringify(animalFavorites))
     window.location.replace("favorites.html")
   })
-  let addRemoveButton = $(`<button></button>`).addClass("removeCard").text("Remove Button");
+  
+  let addRemoveButton = $(`<button></button>`).addClass("removeCard").text("Remove Button").addClass("button is-danger");
+  footer.append ([addButton, addRemoveButton]);
+  let card = $(`<div></div>`).addClass('cardClass').addClass("card has-background-link-light");
+  card.append ([header, cardstat1, cardstat2, cardstat3, footer]);
+  
+  addRemoveButton.click(function(){
+    let parentDiv = addRemoveButton.closest('.cardClass');
+    parentDiv.remove();
+  }
+);
+ 
+  $("#animal-container").append(card)
+
+
+  return;
+}
+
+
+
+//create pokemon cards, save to local storage and add favorite to Favorites.html
+function createPokemonCard(pokemon) {
+  let header = $(`<h3></h3>`).addClass("card-header-h3 is-size-5 has-text-dark").text(`Name: ${pokemon.name}`) 
+  let cardstat1 = $(`<p></p>`).addClass("card-stats").text(`Height: ${pokemon.height}`);
+  let cardstat2 = $(`<p></p>`).addClass("card-stats").text(`Weight: ${pokemon.weight}`);
+  let cardstat3 = $(`<p></p>`).addClass("card-stats").text(`Speed: ${pokemon.speed}`);
+  let footer = $(`<div></div>`);
+  let addButton = $(`<button></button>`).text("Add to Favorites").addClass("button is-white");
+  addButton.click(function () {
+    let newPokemon = {
+      name: pokemon.name,
+      height: pokemon.height,
+      weight: pokemon.weight,
+      speed: pokemon.speed,
+    }
+    let pokemonFavorites = JSON.parse(localStorage.getItem("pokemonFavorites")) || []
+    pokemonFavorites.push(newPokemon)
+    localStorage.setItem("pokemonFavorites", JSON.stringify(pokemonFavorites))
+    window.location.replace("favorites.html")
+  })
+  let addRemoveButton = $(`<button></button>`).text("Remove Button").addClass("removeCard").addClass("button is-danger");
   footer.append([addButton, addRemoveButton]);
-  let card = $(`<div></div>`).addClass("card has-background-info-light");
+  let card = $(`<div></div>`).addClass("card has-background-primary-light");
+
+
+
+
   card.append([header, cardstat1, cardstat2, cardstat3, footer]);
 
   addRemoveButton.click(function () {

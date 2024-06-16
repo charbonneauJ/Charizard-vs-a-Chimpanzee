@@ -231,7 +231,7 @@ function createPokemonCard(pokemon) {
   return;
 }
 
-
+//lines 236-336 are for the modal functionality
 //event listeners
 document.addEventListener("DOMContentLoaded", () => {
   // Functions to open and close a modal
@@ -240,7 +240,6 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
-//Lines 91-132 are for the modal functionality
 document.addEventListener("DOMContentLoaded", () => {
   // Functions to open and close a modal
   function openModal($el) {

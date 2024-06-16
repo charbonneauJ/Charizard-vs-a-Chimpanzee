@@ -210,7 +210,6 @@ function createAnimalCard(animal) {
     let animalFavorites = JSON.parse(localStorage.getItem("animalFavorites")) || []
     animalFavorites.push(newAnimal)
     localStorage.setItem("animalFavorites", JSON.stringify(animalFavorites))
-    window.location.replace("favorites.html")
   })
   
   let addRemoveButton = $(`<button></button>`).addClass("removeCard").text("Remove Button").addClass("button is-danger");
@@ -250,7 +249,7 @@ function createPokemonCard(pokemon) {
     let pokemonFavorites = JSON.parse(localStorage.getItem("pokemonFavorites")) || []
     pokemonFavorites.push(newPokemon)
     localStorage.setItem("pokemonFavorites", JSON.stringify(pokemonFavorites))
-    window.location.replace("favorites.html")
+
   })
   let addRemoveButton = $(`<button></button>`).text("Remove Button").addClass("removeCard").addClass("button is-danger");
   footer.append([addButton, addRemoveButton]);

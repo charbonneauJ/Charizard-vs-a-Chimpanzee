@@ -1,7 +1,12 @@
 let animalFavorites = JSON.parse(localStorage.getItem("animalFavorites")) || []
-console.log("You made it here")
 animalFavorites.forEach(function(item){
     createAnimalCard(item)
+})
+
+let pokemonFavorites = JSON.parse(localStorage.getItem("pokemonFavorites")) || []
+
+pokemonFavorites.forEach(function(item){
+    createPokemonCard(item)
 })
 
 function createAnimalCard(animal) {
@@ -29,3 +34,27 @@ function createAnimalCard(animal) {
     return;
   }
   
+  function createPokemonCard(pokemon) {
+    // $(`.a-card-header`).addClass("card-header-h3").text(animal.name);
+    // $(`#aStat-1`).addClass("card-stats").text(animal.height);
+    // $(`#aStat-2`).addClass("card-stats").text(animal.weight);
+    // $(`#aStat-3`).addClass("card-stats").text(animal.speed);
+    //refactoring
+    let header = $(`<h3></h3>`).addClass("card-header-h3").text(pokemon.name);
+    let cardstat1 = $(`<p></p>`).addClass("card-stats").text(pokemon.height);
+    let cardstat2 =  $(`<p></p>`).addClass("card-stats").text(pokemon.weight);
+    let cardstat3 = $(`<p></p>`).addClass("card-stats").text(pokemon.speed);
+    let footer = $(`<div></div>`);
+    let addButton = $(`<button></button>`).text("Add to Favorites");
+    
+    let addRemoveButton = $(`<button></button>`).text("Remove Button");
+    let card = $(`<div></div>`)
+    card.append ([header, cardstat1, cardstat2, cardstat3, footer]);
+    
+  
+  $("#favorite-pokemon-container").append(card)
+  
+  
+  
+    return;
+  }

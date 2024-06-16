@@ -1,6 +1,14 @@
-# Group-Project-1
+# Charizard vs a Chimpanzee
+
+## Description  
+
+
+
+## Screenshot
+
+
 
 # Contributors - 
-## Ashleigh Corse
-## Bryan Taboada
-## John Charbonneau
+### Ashleigh Corse
+### Bryan Taboada
+### John Charbonneau

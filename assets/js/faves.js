@@ -6,14 +6,14 @@ animalFavorites.forEach(function (item) {
 
 function createAnimalCard(animal) {
   // Dynamically creating tags with content onto the dom 
-  let header = $(`<h3></h3>`).addClass("card-header-h3").text(animal.name);
-  let cardstat1 = $(`<p></p>`).addClass("card-stats").text(animal.height);
-  let cardstat2 = $(`<p></p>`).addClass("card-stats").text(animal.weight);
-  let cardstat3 = $(`<p></p>`).addClass("card-stats").text(animal.speed);
+  let header = $(`<h3></h3>`).addClass("card-header-h3 is-size-5 has-text-dark").text(`Name: ${animal.name}`) 
+  let cardstat1 = $(`<p></p>`).addClass("card-stats").text(`Height: ${animal.height}`);
+  let cardstat2 = $(`<p></p>`).addClass("card-stats").text(`Weight: ${animal.weight}`);
+  let cardstat3 = $(`<p></p>`).addClass("card-stats").text(`Speed: ${animal.speed}`);
   let footer = $(`<div></div>`);
-  let addRemoveButton = $(`<button></button>`).text("Remove Button").addClass("removeCard");
+  let addRemoveButton = $(`<button></button>`).addClass("removeCard").text("Remove Button").addClass("button is-danger");
   footer.append(addRemoveButton);
-  let card = $(`<div></div>`).addClass('cardClass');
+  let card = $(`<div></div>`).addClass('cardClass').addClass("card has-background-link-light");
   // adding jquerry data to object
   card.data('name', animal.name);
   card.append([header, cardstat1, cardstat2, cardstat3, footer]);
@@ -38,14 +38,14 @@ pokemonFavorites.forEach(function (item) {
 
 function createPokemonCard(pokemon) {
   // Dynamically creating tags with content onto the dom 
-  let header = $(`<h3></h3>`).addClass("card-header-h3").text(pokemon.name);
-  let cardstat1 = $(`<p></p>`).addClass("card-stats").text(pokemon.height);
-  let cardstat2 = $(`<p></p>`).addClass("card-stats").text(pokemon.weight);
-  let cardstat3 = $(`<p></p>`).addClass("card-stats").text(pokemon.speed);
+  let header = $(`<h3></h3>`).addClass("card-header-h3 is-size-5 has-text-dark").text(`Name: ${pokemon.name}`) 
+  let cardstat1 = $(`<p></p>`).addClass("card-stats").text(`Height: ${pokemon.height}`);
+  let cardstat2 = $(`<p></p>`).addClass("card-stats").text(`Weight: ${pokemon.weight}`);
+  let cardstat3 = $(`<p></p>`).addClass("card-stats").text(`Speed: ${pokemon.speed}`);
   let footer = $(`<div></div>`);
-  let addRemoveButton = $(`<button></button>`).text("Remove Button");
+  let addRemoveButton = $(`<button></button>`).text("Remove Button").addClass("removeCard").addClass("button is-danger");
   footer.append(addRemoveButton);
-  let card = $(`<div></div>`).addClass('cardClass');
+  let card = $(`<div></div>`).addClass("card has-background-primary-light");
   card.data('name', pokemon.name);
   card.append([header, cardstat1, cardstat2, cardstat3, footer]);
   addRemoveButton.click(function () {

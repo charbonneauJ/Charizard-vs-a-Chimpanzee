@@ -176,12 +176,12 @@ function createAnimalCard(animal) {
   footer.append([addButton, addRemoveButton]);
   let card = $(`<div></div>`).addClass('cardClass')
   card.append([header, cardstat1, cardstat2, cardstat3, footer]);
-  
-  addRemoveButton.click(function(){
+
+  addRemoveButton.click(function () {
     let parentDiv = addRemoveButton.closest('.cardClass');
     parentDiv.remove();
   }
-);
+  );
 
   $("#animal-container").append(card)
 
@@ -194,9 +194,7 @@ function createAnimalCard(animal) {
 
 //create pokemon cards, save to local storage and add favorite to Favorites.html
 function createPokemonCard(pokemon) {
-  console.log("Yeah its not here")
   let header = $(`<h3></h3>`).addClass("card-header-h3").text(pokemon.name)
-  console.log(pokemon.name);
   let cardstat1 = $(`<p></p>`).addClass("card-stats").text(pokemon.height);
   let cardstat2 = $(`<p></p>`).addClass("card-stats").text(pokemon.weight);
   let cardstat3 = $(`<p></p>`).addClass("card-stats").text(pokemon.speed);
@@ -214,15 +212,18 @@ function createPokemonCard(pokemon) {
     localStorage.setItem("pokemonFavorites", JSON.stringify(pokemonFavorites))
     window.location.replace("favorites.html")
   })
-  let addRemoveButton = $(`<button></button>`).text("Remove Button");
+  const addRemoveButton = $(`<button></button>`).text("Remove Button").addClass("removeCard");
   footer.append([addButton, addRemoveButton]);
-  let card = $(`<div></div>`)
+  let card = $(`<div></div>`).addClass('cardClass');
   card.append([header, cardstat1, cardstat2, cardstat3, footer]);
+  //creating delete functionality 
+  addRemoveButton.click(function () {
+    let parentDiv = addRemoveButton.closest('.cardClass');
+    parentDiv.remove();
+  })
+
 
   $("#pokemon-container").append(card)
-
-  console.log("Yeah its not here")
-
 
   return;
 }

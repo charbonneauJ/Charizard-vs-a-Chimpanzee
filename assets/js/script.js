@@ -1,23 +1,26 @@
 // dealing with user input pokemon
 function pokemonSearch() {
   const userPokemonInput = pokemonInput.value.trim();
-  console.log("User Pokemon Input", userPokemonInput);
-  pokemonFetchApi(userPokemonInput);
   if (userPokemonInput) {
-    console.log("made it here");
+    pokemonFetchApi(userPokemonInput);
+
   }
   // this can be an alert somewhere else.
   else {
-    console.log("enter a pokemon");
+    const feedbackPoke = 'Please enter a pokemon'
+    // possible feedback message
+    // const pokeFeedbackEl = document.querySelector('#pokeFeedback');
+    // pokeFeedbackEl.textContent = feedbackPoke;
+  
   }
 }
 
 // dealing with user input animal
 function animalSearch() {
+  //removing spaces from user's input
   const userAnimalInput = animalInput.value.trim();
   console.log("User Animal Input:", userAnimalInput);
-  // const userAnimalInput = "Dog";
-  // This above runs the modal when the button is clicked.
+
   if (userAnimalInput) {
     animalFetchApi(userAnimalInput);
   }
@@ -35,7 +38,7 @@ function animalFetchApi(animalInput) {
     url: "https://api.api-ninjas.com/v1/animals?name=" + animalInput,
     headers: { "X-Api-Key": "LOHrIg46z+hgQ1p2e+L3QQ==Nr61dc7r4QFJEkxi" },
     contentType: "application/json",
-    success: function (result) { 
+    success: function (result) {
       console.log(result);
       console.log(`ninja api`, result[0]); //eventually delete
       let animalRenWeight, animalRenSpeed, animalRenHeight;
@@ -82,10 +85,11 @@ function animalFetchApi(animalInput) {
   });
 }
 
+
 // fetching information using user input pokemon
-function pokemonFetchApi(userPokemonInput) {
+function pokemonFetchApi(pokemonInput) {
+  let userPokemonInput = pokemonInput.toLowerCase();
   let urlPokemon = `https://pokeapi.co/api/v2/pokemon/${userPokemonInput}`;
-  console.log(urlPokemon);
   fetch(urlPokemon)
     .then(function (response) {
       // Check if the response is successful (status code 200-299)
@@ -96,8 +100,6 @@ function pokemonFetchApi(userPokemonInput) {
       return response.json();
     })
     .then(function (data) {
-      // Log the data from the response
-      console.log("step 2:", data);
       // converts to lbs
       let pokeApiWeight = Math.round(((data.weight) / 10) * 2.20462);
       const pokeWeight = `${pokeApiWeight} lbs`;
@@ -109,6 +111,7 @@ function pokemonFetchApi(userPokemonInput) {
       // converts to mph
       let pokeApiSpeed = Math.round(data.stats[5].base_stat * 0.621371);
       const pokeSpeed = `${pokeApiSpeed} mph`;
+      // pokemon object with all data
       const pokemon = {
         name: userPokemonInput,
         weight: pokeWeight,
@@ -118,12 +121,13 @@ function pokemonFetchApi(userPokemonInput) {
       console.log('pokemon: info', pokemon)
       createPokemonCard(pokemon);
 
-      //  .catch(function (error) {
-      //       // add this to the dom somewhere
-      //       console.error("Error, try again", error);
-      //     });
+
+    })
+    .catch(function (error) {
+      // add this to the dom somewhere
+      console.error("Error, try again", error);
     });
-}
+};
 
 //todo display animal cards
 
@@ -135,28 +139,28 @@ function createAnimalCard(animal) {
   //refactoring
   let header = $(`<h3></h3>`).addClass("card-header-h3").text(animal.name);
   let cardstat1 = $(`<p></p>`).addClass("card-stats").text(animal.height);
-  let cardstat2 =  $(`<p></p>`).addClass("card-stats").text(animal.weight);
+  let cardstat2 = $(`<p></p>`).addClass("card-stats").text(animal.weight);
   let cardstat3 = $(`<p></p>`).addClass("card-stats").text(animal.speed);
   let footer = $(`<div></div>`);
   let addButton = $(`<button></button>`).text("Add to Favorites");
-  addButton.click(function(){
+  addButton.click(function () {
     let newAnimal = {
       name: animal.name,
       height: animal.height,
       weight: animal.weight,
       speed: animal.speed,
     }
-  let animalFavorites = JSON.parse(localStorage.getItem("animalFavorites")) || []
-  animalFavorites.push(newAnimal)
-  localStorage.setItem("animalFavorites", JSON.stringify(animalFavorites))
-  window.location.replace("favorites.html")
+    let animalFavorites = JSON.parse(localStorage.getItem("animalFavorites")) || []
+    animalFavorites.push(newAnimal)
+    localStorage.setItem("animalFavorites", JSON.stringify(animalFavorites))
+    window.location.replace("favorites.html")
   })
   let addRemoveButton = $(`<button></button>`).text("Remove Button");
-  footer.append ([addButton, addRemoveButton]);
+  footer.append([addButton, addRemoveButton]);
   let card = $(`<div></div>`)
-  card.append ([header, cardstat1, cardstat2, cardstat3, footer]);
+  card.append([header, cardstat1, cardstat2, cardstat3, footer]);
 
-$("#animal-container").append(card)
+  $("#animal-container").append(card)
 
 
 

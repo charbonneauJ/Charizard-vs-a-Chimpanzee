@@ -35,7 +35,8 @@ function animalFetchApi(animalInput) {
     url: "https://api.api-ninjas.com/v1/animals?name=" + animalInput,
     headers: { "X-Api-Key": "LOHrIg46z+hgQ1p2e+L3QQ==Nr61dc7r4QFJEkxi" },
     contentType: "application/json",
-    success: function (result) {
+    success: function (result) { 
+      console.log(result);
       console.log(`ninja api`, result[0]); //eventually delete
       let animalRenWeight, animalRenSpeed, animalRenHeight;
       // checking results for weight if they exist. if they don't dom updated with unknown
@@ -122,10 +123,6 @@ function pokemonFetchApi(userPokemonInput) {
     });
 }
 
-//todo store to local storage
-
-//todo get from local storage
-
 //todo display animal cards
 // let animal = {
 //   name: "Cheetah",
@@ -133,15 +130,49 @@ function pokemonFetchApi(userPokemonInput) {
 //   height: "45in",
 //   speed: "70mph",
 // };
+
+//refactoring below function to get favorites, save to local storage, display multiple objects(JC).
 function createAnimalCard(animal) {
-  $(`.a-card-header`).addClass("card-header-h3").text(animal.name);
-  $(`#aStat-1`).addClass("card-stats").text(animal.height);
-  $(`#aStat-2`).addClass("card-stats").text(animal.weight);
-  $(`#aStat-3`).addClass("card-stats").text(animal.speed);
+  // $(`.a-card-header`).addClass("card-header-h3").text(animal.name);
+  // $(`#aStat-1`).addClass("card-stats").text(animal.height);
+  // $(`#aStat-2`).addClass("card-stats").text(animal.weight);
+  // $(`#aStat-3`).addClass("card-stats").text(animal.speed);
+  //refactoring
+  let header = $(`<h3></h3>`).addClass("card-header-h3").text(animal.name);
+  let cardstat1 = $(`<p></p>`).addClass("card-stats").text(animal.height);
+  let cardstat2 =  $(`<p></p>`).addClass("card-stats").text(animal.weight);
+  let cardstat3 = $(`<p></p>`).addClass("card-stats").text(animal.speed);
+  let footer = $(`<div></div>`);
+  let addButton = $(`<button></button>`).text("Add to Favorites");
+  addButton.click(function(){
+    let newAnimal = {
+      name: animal.name,
+      height: animal.height,
+      weight: animal.weight,
+      speed: animal.speed,
+    }
+  let animalFavorites = JSON.parse(localStorage.getItem("animalFavorites")) || []
+  animalFavorites.push(newAnimal)
+  localStorage.setItem("animalFavorites", JSON.stringify(animalFavorites))
+  window.location.replace("favorites.html")
+  })
+  let addRemoveButton = $(`<button></button>`).text("Remove Button");
+  footer.append ([addButton, addRemoveButton]);
+  let card = $(`<div></div>`)
+  card.append ([header, cardstat1, cardstat2, cardstat3, footer]);
+
+$("#animal-container").append(card)
+
+
+
   return;
 }
 
+
+
 //todo display pokemon cards
+
+
 
 function createPokemonCard(pokemon) {
   $(`.p-card-header`).addClass("card-header-h3").text(pokemon.name);

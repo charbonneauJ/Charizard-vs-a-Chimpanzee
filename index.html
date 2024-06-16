@@ -45,45 +45,44 @@
           </svg>
 
 
-      </div>
 
-      <div id="navbarBasicExample" class="navbar-menu">
-        <div class="navbar-start">
-          <a class="navbar-item">
-            Home
-          </a>
-
-          <a class="navbar-item">
-            Documentation
-          </a>
-
-          <a class="navbar-item" href="favorites.html">
-            Favorites
-          </a>
-
-          <div class="navbar-item has-dropdown is-hoverable">
-            <a class="navbar-link">
-              More
-            </a>
-
-            <div class="navbar-dropdown">
+          <div id="navbarBasicExample" class="navbar-menu">
+            <div class="navbar-start">
               <a class="navbar-item">
-                About
+                Home
               </a>
-              <a class="navbar-item is-selected">
-                Jobs
-              </a>
+
               <a class="navbar-item">
-                Contact
+                Documentation
               </a>
-              <hr class="navbar-divider">
-              <a class="navbar-item">
-                Report an issue
+
+              <a class="navbar-item" href="favorites.html">
+                Favorites
               </a>
+
+              <div class="navbar-item has-dropdown is-hoverable">
+                <a class="navbar-link">
+                  More
+                </a>
+
+                <div class="navbar-dropdown">
+                  <a class="navbar-item">
+                    About
+                  </a>
+                  <a class="navbar-item is-selected">
+                    Jobs
+                  </a>
+                  <a class="navbar-item">
+                    Contact
+                  </a>
+                  <hr class="navbar-divider">
+                  <a class="navbar-item">
+                    Report an issue
+                  </a>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-      </div>
     </nav>
 
   </header>
@@ -96,8 +95,8 @@
       <div class="modal-content">
         <div class="box">
 
-          <p><input id= "userAnimalInput" class="input is-normal" type="text" placeholder="Enter animal name here"></p>
-        <button class="searchAnimalModalBtn" id="modal-button-animal" aria-label="modal-close">Search</button>
+          <p><input id="userAnimalInput" class="input is-normal" type="text" placeholder="Enter animal name here"></p>
+          <button class="searchAnimalModalBtn" id="modal-button-animal" aria-label="modal-close">Search</button>
 
         </div>
       </div>
@@ -110,69 +109,76 @@
     <button class="js-modal-trigger button is-black" id="search-button-animal">Search Animal</button>
   </div>
   <div>
-    
 
-      <div id="modal-js-example1" class="modal">
-        <div class="modal-background"></div>
 
-        <div class="modal-content">
-          <div class="box">
+    <div id="modal-js-example1" class="modal">
+      <div class="modal-background"></div>
 
-            <p><input id= "userPokemonInput" class="input is-normal" type="text" placeholder="Enter Pokemon name here"></p>
+      <div class="modal-content">
+        <div class="box">
+
+          <p><input id="userPokemonInput" class="input is-normal" type="text" placeholder="Enter Pokemon name here"></p>
           <button class="searchPokemonModalBtn" aria-label="modal-close" id="modal-button-pokemon">Search</button>
-          </div>
         </div>
-
-        <button class="modal-close is-large" aria-label="close">Search Pokemon</button>
       </div>
-      <!-- <input class="input is-normal" id="search-input-animal" type="text"> -->
 
-      <button class="modal-trigger button is-black" id="search-button-pokemon">Search Pokemon</button>
-  
+      <button class="modal-close is-large" aria-label="close">Search Pokemon</button>
+    </div>
+    <!-- <input class="input is-normal" id="search-input-animal" type="text"> -->
+
+    <button class="modal-trigger button is-black" id="search-button-pokemon">Search Pokemon</button>
+
     <div>
- 
+
       <!-- <input class="input is-normal" id="search-input-animal" type="text"> -->
 
       <!-- <input class="input is-normal" id="search-input-pokemon" type="text"> -->
 
-  </div>
+    </div>
 
-  <div class="card" id="animal-1-output">
-    <header class="animal-1-output-header">
-      <p class="card-header-title">Animal</p>
-    </header>
-    <div class="a-card-content">
-      <div class="a-card-header"></div>
-      <img class="a-img">
-      <div class="a-stats-content">
-        <p id="aStat-1"></p>
-        <p id="aStat-2"></p>
-        <p id="aStat-3"></p>
-      </div>
+    <div class="card" id="animal-container">
+      <header class="animal-1-output-header">
+        <p class="card-header-title">Animal</p>
+      </header>
+      
     </div>
-    <footer class="card-footer">
-      <a href="#" class="card-footer-item">Save to Favorites</a>
-      <a href="#" class="card-footer-item">Delete</a>
-    </footer>
-  </div>
-  <div class="card" id="pokemon-1-output">
-    <header class="pokemon-1-output-header">
-      <p class="card-header-title">Pokemon</p>
-    </header>
-    <div class="p-card-content">
-      <div class="p-card-header"></div>
-      <img class="p-img">
-      <div class="p-stats-content">
-        <p id="pStat-1"></p>
-        <p id="pStat-2"></p>
-        <p id="pStat-3"></p>
+    
+    <!-- <div class="card" id="animal-1-output">
+      <header class="animal-1-output-header">
+        <p class="card-header-title">Animal</p>
+      </header>
+      <div class="a-card-content">
+        <div class="a-card-header"></div>
+        <img class="a-img">
+        <div class="a-stats-content">
+          <p id="aStat-1"></p>
+          <p id="aStat-2"></p>
+          <p id="aStat-3"></p>
+        </div>
       </div>
+      <footer class="card-footer">
+        <a href="#" class="card-footer-item">Save to Favorites</a>
+        <a href="#" class="card-footer-item">Delete</a>
+      </footer>
+    </div> -->
+    <div class="card" id="pokemon-1-output">
+      <header class="pokemon-1-output-header">
+        <p class="card-header-title">Pokemon</p>
+      </header>
+      <div class="p-card-content">
+        <div class="p-card-header"></div>
+        <img class="p-img">
+        <div class="p-stats-content">
+          <p id="pStat-1"></p>
+          <p id="PStat-2"></p>
+          <p id="pStat-3"></p>
+        </div>
+      </div>
+      <footer class="card-footer">
+        <a href="#" class="card-footer-item">Save to Favorites</a>
+        <a href="#" class="card-footer-item">Delete</a>
+      </footer>
     </div>
-    <footer class="card-footer">
-      <a href="#" class="card-footer-item">Save to Favorites</a>
-      <a href="#" class="card-footer-item">Delete</a>
-    </footer>
-  </div>
 
     <footer>
       <p>Charizard vs a Chimpanzee&copy;</p>

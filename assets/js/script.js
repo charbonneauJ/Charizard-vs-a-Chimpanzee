@@ -144,16 +144,16 @@ function createAnimalCard(animal) {
       weight: animal.weight,
       speed: animal.speed,
     }
+    
     let animalFavorites = JSON.parse(localStorage.getItem("animalFavorites")) || []
     animalFavorites.push(newAnimal)
     localStorage.setItem("animalFavorites", JSON.stringify(animalFavorites))
     window.location.replace("favorites.html")
   })
   let addRemoveButton = $(`<button></button>`).text("Remove Button");
-  footer.append([addButton, addRemoveButton]);
+  footer.append ([addButton, addRemoveButton]);
   let card = $(`<div></div>`)
-  card.append([header, cardstat1, cardstat2, cardstat3, footer]);
-
+  card.append ([header, cardstat1, cardstat2, cardstat3, footer]);
   $("#animal-container").append(card)
 
 
@@ -165,9 +165,7 @@ function createAnimalCard(animal) {
 
 //create pokemon cards, save to local storage and add favorite to Favorites.html
 function createPokemonCard(pokemon) {
-  console.log("Yeah its not here")
   let header = $(`<h3></h3>`).addClass("card-header-h3").text(pokemon.name)
-  console.log(pokemon.name);
   let cardstat1 = $(`<p></p>`).addClass("card-stats").text(pokemon.height);
   let cardstat2 = $(`<p></p>`).addClass("card-stats").text(pokemon.weight);
   let cardstat3 = $(`<p></p>`).addClass("card-stats").text(pokemon.speed);
@@ -302,7 +300,11 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 });
-
+//below is 
+// let closeonclick = document.getElementById("close-on-click");
+// closeonclick.onclick = function () {
+//   $("#modal-js-example").removeClass("is-active");
+// };
 //end of modal functionality
 
 //event listener for click of animal search. will need to make animalInput a string from the user.

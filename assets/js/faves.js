@@ -49,7 +49,7 @@ function createPokemonCard(pokemon) {
   card.data('name', pokemon.name);
   card.append([header, cardstat1, cardstat2, cardstat3, footer]);
   addRemoveButton.click(function () {
-    let parentDiv = addRemoveButton.closest('.cardClass');
+    let parentDiv = addRemoveButton.closest('.card');
     // removing from dom
     parentDiv.remove();
     // removing from local storage

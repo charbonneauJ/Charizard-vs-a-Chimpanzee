@@ -129,14 +129,8 @@ function pokemonFetchApi(pokemonInput) {
     });
 };
 
-//todo display animal cards
-
+//create animal cards, save to local storage and add favorite to Favorites.html
 function createAnimalCard(animal) {
-  // $(`.a-card-header`).addClass("card-header-h3").text(animal.name);
-  // $(`#aStat-1`).addClass("card-stats").text(animal.height);
-  // $(`#aStat-2`).addClass("card-stats").text(animal.weight);
-  // $(`#aStat-3`).addClass("card-stats").text(animal.speed);
-  //refactoring
   let header = $(`<h3></h3>`).addClass("card-header-h3").text(animal.name);
   let cardstat1 = $(`<p></p>`).addClass("card-stats").text(animal.height);
   let cardstat2 = $(`<p></p>`).addClass("card-stats").text(animal.weight);
@@ -169,17 +163,41 @@ function createAnimalCard(animal) {
 
 
 
-//todo display pokemon cards
-
-
-
+//create pokemon cards, save to local storage and add favorite to Favorites.html
 function createPokemonCard(pokemon) {
-  $(`.p-card-header`).addClass("card-header-h3").text(pokemon.name);
-  $(`#pStat-1`).addClass("card-stats").text(pokemon.height);
-  $(`#pStat-2`).addClass("card-stats").text(pokemon.weight);
-  $(`#pStat-3`).addClass("card-stats").text(pokemon.speed);
+  console.log("Yeah its not here")
+  let header = $(`<h3></h3>`).addClass("card-header-h3").text(pokemon.name)
+  console.log(pokemon.name);
+  let cardstat1 = $(`<p></p>`).addClass("card-stats").text(pokemon.height);
+  let cardstat2 = $(`<p></p>`).addClass("card-stats").text(pokemon.weight);
+  let cardstat3 = $(`<p></p>`).addClass("card-stats").text(pokemon.speed);
+  let footer = $(`<div></div>`);
+  let addButton = $(`<button></button>`).text("Add to Favorites");
+  addButton.click(function(){
+    let newPokemon = {
+      name: pokemon.name,
+      height: pokemon.height,
+      weight: pokemon.weight,
+      speed: pokemon.speed,
+    }
+  let pokemonFavorites = JSON.parse(localStorage.getItem("pokemonFavorites")) || []
+  pokemonFavorites.push(newPokemon)
+  localStorage.setItem("pokemonFavorites", JSON.stringify(pokemonFavorites))
+  window.location.replace("favorites.html")
+  })
+  let addRemoveButton = $(`<button></button>`).text("Remove Button");
+  footer.append ([addButton, addRemoveButton]);
+  let card = $(`<div></div>`)
+  card.append ([header, cardstat1, cardstat2, cardstat3, footer]);
+
+$("#pokemon-container").append(card)
+
+console.log("Yeah its not here")
+
+
   return;
 }
+
 
 //event listeners
 document.addEventListener("DOMContentLoaded", () => {

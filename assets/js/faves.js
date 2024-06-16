@@ -14,12 +14,16 @@ function createAnimalCard(animal) {
   let addRemoveButton = $(`<button></button>`).text("Remove Button").addClass("removeCard");
   footer.append(addRemoveButton);
   let card = $(`<div></div>`).addClass('cardClass');
+  // adding jquerry data to object
+  card.data('name', animal.name);
   card.append([header, cardstat1, cardstat2, cardstat3, footer]);
   addRemoveButton.click(function () {
     let parentDiv = addRemoveButton.closest('.cardClass');
+    // removing from dom
     parentDiv.remove();
-  }
-  );
+    // removing from local storage
+    removeLocalStorage('animalFavorites', animal.name)
+  });
 
   $("#favorite-animal-container").append(card)
 
@@ -42,14 +46,26 @@ function createPokemonCard(pokemon) {
   let addRemoveButton = $(`<button></button>`).text("Remove Button");
   footer.append(addRemoveButton);
   let card = $(`<div></div>`).addClass('cardClass');
+  card.data('name', pokemon.name);
   card.append([header, cardstat1, cardstat2, cardstat3, footer]);
   addRemoveButton.click(function () {
     let parentDiv = addRemoveButton.closest('.cardClass');
+    // removing from dom
     parentDiv.remove();
+    // removing from local storage
+    removeLocalStorage('pokemonFavorites', pokemon.name);
   }
   );
 
   $("#favorite-pokemon-container").append(card)
 
   return;
+}
+
+
+function removeLocalStorage(storageKey, itemName) {
+  //retrieving current localStorage
+  let favorites = JSON.parse(localStorage.getItem(storageKey)) || [];
+  favorites = favorites.filter(item => item.name !== itemName);
+  localStorage.setItem(storageKey, JSON.stringify(favorites));
 }

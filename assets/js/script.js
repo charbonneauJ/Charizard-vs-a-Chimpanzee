@@ -172,10 +172,16 @@ function createAnimalCard(animal) {
     localStorage.setItem("animalFavorites", JSON.stringify(animalFavorites))
     window.location.replace("favorites.html")
   })
-  let addRemoveButton = $(`<button></button>`).text("Remove Button");
+  let addRemoveButton = $(`<button></button>`).addClass("removeCard").text("Remove Button");
   footer.append([addButton, addRemoveButton]);
-  let card = $(`<div></div>`)
+  let card = $(`<div></div>`).addClass('cardClass')
   card.append([header, cardstat1, cardstat2, cardstat3, footer]);
+  
+  addRemoveButton.click(function(){
+    let parentDiv = addRemoveButton.closest('.cardClass');
+    parentDiv.remove();
+  }
+);
 
   $("#animal-container").append(card)
 

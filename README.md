@@ -8,6 +8,7 @@ Hello animal and pokemon enthusiiust like ourselves.  Have you ever wondered how
 
 
 ## Screenshot
+![image](https://github.com/charbonneauJ/Charizard-vs-a-Chimpanzee/assets/167835687/ec80bd8d-9dd1-4079-af79-046ca87333d9)
 
 
 

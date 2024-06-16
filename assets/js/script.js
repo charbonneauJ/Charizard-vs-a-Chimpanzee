@@ -97,22 +97,24 @@ function pokemonFetchApi(userPokemonInput) {
     .then(function (data) {
       // Log the data from the response
       console.log("step 2:", data);
-      // update the dom
-      let pokeApiWeight = Math.round((data.weight / 10) * 2.20462, 0); // converts to lbs
-      console.log("pokemon weight:", pokeApiWeight);
+      // converts to lbs
+      let pokeApiWeight = Math.round(((data.weight) / 10) * 2.20462);
+      const pokeWeight = `${pokeApiWeight} lbs`;
       let pokeApiHeight = (data.height / 10) * 3.28084; //converts to feet in decimal format
       // converting decimal height to feet and inches
       let feet = Math.floor(pokeApiHeight);
       let inches = Math.round((pokeApiHeight - feet) * 12);
-      const realPokeHeight = `feet ${feet}\' inches ${inches}\"`;
-      let pokeApiSpeed = Math.round(data.stats[5].base_stat * 0.621371, 0); // converts to mph
-      let pokemon = {
+      const pokeHeight = `${feet}' ${inches}"`;
+      // converts to mph
+      let pokeApiSpeed = Math.round(data.stats[5].base_stat * 0.621371);
+      const pokeSpeed = `${pokeApiSpeed} mph`;
+      const pokemon = {
         name: userPokemonInput,
-        weight: pokeApiWeight,
-        height: realPokeHeight,
-        speed: pokeApiSpeed,
+        weight: pokeWeight,
+        height: pokeHeight,
+        speed: pokeSpeed,
       };
-
+      console.log('pokemon: info', pokemon)
       createPokemonCard(pokemon);
 
       //  .catch(function (error) {
@@ -127,12 +129,7 @@ function pokemonFetchApi(userPokemonInput) {
 //todo get from local storage
 
 //todo display animal cards
-// let animal = {
-//   name: "Cheetah",
-//   weight: "100lbs",
-//   height: "45in",
-//   speed: "70mph",
-// };
+
 function createAnimalCard(animal) {
   $(`.a-card-header`).addClass("card-header-h3").text(animal.name);
   $(`#aStat-1`).addClass("card-stats").text(animal.height);
@@ -260,7 +257,7 @@ document.addEventListener("DOMContentLoaded", () => {
 //event listener for click of animal search. will need to make animalInput a string from the user.
 const animalInput = document.querySelector("#userAnimalInput");
 const animalButton = document.querySelector("#modal-button-animal");
-const pokemonInput = document.querySelector("#userPokemonInput"); // john's id: #
+const pokemonInput = document.querySelector("#userPokemonInput");
 const pokemonButton = document.querySelector("#modal-button-pokemon");
 
 pokemonButton.addEventListener("click", pokemonSearch);

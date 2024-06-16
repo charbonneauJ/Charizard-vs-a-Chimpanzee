@@ -20,12 +20,16 @@ function createAnimalCard(animal) {
     let cardstat2 =  $(`<p></p>`).addClass("card-stats").text(animal.weight);
     let cardstat3 = $(`<p></p>`).addClass("card-stats").text(animal.speed);
     let footer = $(`<div></div>`);
-    let addButton = $(`<button></button>`).text("Add to Favorites");
     
-    let addRemoveButton = $(`<button></button>`).text("Remove Button");
-    let card = $(`<div></div>`)
+    let addRemoveButton = $(`<button></button>`).text("Remove Button").addClass("removeCard");
+    footer.append(addRemoveButton);
+    let card = $(`<div></div>`).addClass('cardClass');
     card.append ([header, cardstat1, cardstat2, cardstat3, footer]);
-    
+    addRemoveButton.click(function () {
+      let parentDiv = addRemoveButton.closest('.cardClass');
+      parentDiv.remove();
+    }
+    );
   
   $("#favorite-animal-container").append(card)
   
@@ -45,12 +49,15 @@ function createAnimalCard(animal) {
     let cardstat2 =  $(`<p></p>`).addClass("card-stats").text(pokemon.weight);
     let cardstat3 = $(`<p></p>`).addClass("card-stats").text(pokemon.speed);
     let footer = $(`<div></div>`);
-    let addButton = $(`<button></button>`).text("Add to Favorites");
-    
     let addRemoveButton = $(`<button></button>`).text("Remove Button");
-    let card = $(`<div></div>`)
+    footer.append(addRemoveButton);
+    let card = $(`<div></div>`).addClass('cardClass');
     card.append ([header, cardstat1, cardstat2, cardstat3, footer]);
-    
+    addRemoveButton.click(function () {
+      let parentDiv = addRemoveButton.closest('.cardClass');
+      parentDiv.remove();
+    }
+    );
   
   $("#favorite-pokemon-container").append(card)
   

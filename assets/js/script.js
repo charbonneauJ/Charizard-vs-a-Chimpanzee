@@ -257,8 +257,6 @@ function createPokemonCard(pokemon) {
   let card = $(`<div></div>`).addClass("card has-background-primary-light");
 
 
-
-
   card.append([header, cardstat1, cardstat2, cardstat3, footer]);
 
   addRemoveButton.click(function () {
@@ -267,7 +265,7 @@ function createPokemonCard(pokemon) {
   }
   );
 
-  $("#animal-container").append(card)
+  $("#pokemon-container").append(card)
 
 
   return;
